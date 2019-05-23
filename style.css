@@ -1,0 +1,36 @@
+#author-image {
+  /* border-radius: 50%; */
+  max-width: 400px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.portfolio-item {
+  cursor: pointer;
+}
+
+.portfolio-item .card {
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.feature {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .feature {
+    height: 50vh !important;
+  }
+}
+
+/* BOOTSTRAP OVERWRITES */
+.card-img-overlay {
+  background: linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8));
+}
