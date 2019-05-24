@@ -2,8 +2,7 @@
 
 A dead simple cms for web portfolios. Made with only vanilla javascript, Bootstrap and Google Firebase (or any other NoSQL database).
 
-<img src="img/portfolio-cms-01.jpg" width="49.5%">
-<img src="img/portfolio-cms-02.jpg" width="49.5%">
+<img src="img/portfolio-cms-01.jpg" width="50%"><img src="img/portfolio-cms-02.jpg" width="50%">
 
 <!-- ![](img/portfolio-cms-01.jpg)
 ![](img/portfolio-cms-02.jpg) -->
