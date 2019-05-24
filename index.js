@@ -18,39 +18,102 @@ fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
   .then(response => response.json())
   .then(json => addPortfolioItems(json))
 
-console.log('TCL: portfolio', portfolio)
+const dummyImages = [
+  'img/mobile.jpg',
+  'img/pay.jpg',
+  'img/coding.jpg',
+  'img/sydney.jpg'
+]
+
+const dummyTags = ['mobile', 'webdesign', 'react']
+
 // add portfolio items
-function addPortfolioItems(posts) {
-  posts.forEach(post => {
-    post.image = post.id % 2 ? 'img/mobile.jpg' : 'img/pay.jpg'
-    console.log('adding: ', post)
-    const newItem = createElementForPortfolioItem(post)
-    portfolio.appendChild(newItem)
+function addPortfolioItems(items) {
+  items.forEach(item => {
+    // DEBUGGING
+    item.image = dummyImages[item.id % 4]
+    item.tags = dummyTags
+    item.content = item.body
+    console.log('adding: ', item)
+
+    const newPortfolioItem = createElementForPortfolioItem(item)
+    portfolio.appendChild(newPortfolioItem)
   })
 }
 
 // create dom element for portfolio item
-function createElementForPortfolioItem(data) {
-  const portfolioItem = document.createElement('div')
-  portfolioItem.className = 'portfolio-item col-md-6 my-3'
-  portfolioItem.id = data.id
-  const card = document.createElement('div')
-  card.className = 'card border-0 rounded-lg text-white'
-  card.style.backgroundImage = 'url(' + data.image + ')'
-  const cardOverlay = document.createElement('div')
-  cardOverlay.className =
-    'card-img-overlay rounded-lg h-100 d-flex flex-column justify-content-end'
-  const title = document.createElement('h5')
-  title.className = 'card-title'
-  title.textContent = data.title
-  const text = document.createElement('p')
-  text.className = 'card-text'
-  text.textContent = data.body
+function createElementForPortfolioItem(item) {
+  let portfolioItem = createPortfolioItemElement(item.id)
+  let card = createCardElement(item.image)
+  let cardOverlay = createCardOverlayElement()
+  let title = createCardTitleElement(item.title)
+  let text = createCardTextElement(item.content)
+  let tags = createTagsElementFromTagArray(item.tags)
 
   cardOverlay.appendChild(title)
   cardOverlay.appendChild(text)
+  cardOverlay.appendChild(tags)
   card.appendChild(cardOverlay)
   portfolioItem.appendChild(card)
 
+  portfolioItem.addEventListener('mouseenter', e => {
+    tags.style.opacity = 1
+  })
+
+  portfolioItem.addEventListener('mouseleave', e => {
+    tags.style.opacity = 0
+  })
+
   return portfolioItem
+}
+
+function createTagsElementFromTagArray(tagArray) {
+  let tagsElement = document.createElement('p')
+  tagsElement.className = 'card-text tags'
+  tagsElement.style.opacity = 0
+
+  tagArray.forEach(tag => {
+    let newTagElement = document.createElement('span')
+    newTagElement.className = 'badge badge-light'
+    newTagElement.textContent = tag
+    tagsElement.appendChild(newTagElement)
+    tagsElement.appendChild(document.createTextNode(' '))
+  })
+
+  return tagsElement
+}
+
+function createCardTextElement(excerpt) {
+  let textElement = document.createElement('p')
+  textElement.className = 'card-text'
+  textElement.textContent = excerpt
+  return textElement
+}
+
+function createCardTitleElement(title) {
+  let titleElement = document.createElement('h5')
+  titleElement.className = 'card-title'
+  titleElement.textContent = title
+  return titleElement
+}
+
+function createCardElement(image) {
+  let cardElement = document.createElement('div')
+  cardElement.className = 'card text-white'
+  cardElement.style.backgroundImage = 'url(' + image + ')'
+  return cardElement
+}
+
+function createCardOverlayElement() {
+  let cardOverlayElement = document.createElement('div')
+  cardOverlayElement.className =
+    'card-img-overlay h-100 d-flex flex-column justify-content-end'
+  return cardOverlayElement
+}
+
+function createPortfolioItemElement(id) {
+  let portfolioItemElement = document.createElement('div')
+  portfolioItemElement.className = 'portfolio-item col-lg-6 p-1'
+  portfolioItemElement.id = id
+  return portfolioItemElement
 }
