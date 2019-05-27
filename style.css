@@ -1,12 +1,15 @@
-#author-image {
-  /* border-radius: 50%; */
-  max-width: 350px;
-}
-
 .text-justify {
   text-align: justify;
 }
 
+/* INTRO START */
+#author-image {
+  /* border-radius: 50%; */
+  max-width: 350px;
+}
+/* INTRO END */
+
+/* PORTFOLIO START */
 .portfolio-item {
   cursor: pointer;
 }
@@ -28,59 +31,13 @@
   clip-path: inset(0);
 }
 
-/* .portfolio-item:hover {
-  clip-path: inset(1rem);
-  -webkit-clip-path: inset(1rem);
-} */
-
-.feature {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 50vh !important;
-}
-
-.tags {
+.portfolio-item .tags {
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
   transition: all 1s ease;
 }
 
-#item-page {
-  top: 0;
-  bottom: 0;
-  position: fixed;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  top: -100%;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
-  background: #fff;
-}
-
-#close-button {
-  cursor: pointer;
-}
-#close-button:hover {
-  color: #212529 !important;
-}
-
-@media (min-width: 768px) {
-  .feature {
-    height: 100vh !important;
-  }
-  #close-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 50vw !important;
-  }
-}
-
-/* BOOTSTRAP OVERWRITES */
 .card-img-overlay {
   /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)); */
   background-color: rgba(0, 0, 0, 0.25);
@@ -99,3 +56,47 @@
   border: none;
   border-radius: 0;
 }
+
+/* PORTFOLIO END */
+
+/* ITEM PAGE START */
+#item-page-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh !important;
+}
+
+#item-page {
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  top: -100%;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  background: #fff;
+}
+
+#item-page-close-button {
+  cursor: pointer;
+}
+#item-page-close-button:hover {
+  color: #212529 !important;
+}
+
+@media (min-width: 768px) {
+  #item-page-image {
+    height: 100vh !important;
+  }
+  #item-page-close-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50vw !important;
+  }
+}
+/* ITEM PAGE END */

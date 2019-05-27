@@ -20,44 +20,49 @@
     <title>Portfolio CMS</title>
   </head>
   <body>
-    <div class="container my-5" id="intro">
+    <!-- INTRO START -->
+    <div id="intro" class="container my-5">
       <div class="row">
         <div class="col-md-6 mx-auto text-center">
           <img
-            src="img/author.jpg"
-            alt=""
-            class="img-fluid my-5 mx-auto rounded-circle"
             id="author-image"
+            src=""
+            class="img-fluid my-5 mx-auto rounded-circle"
           />
-          <h1>👋 Hi there, I'm <span id="author-name">Nico Gräf</span></h1>
-          <p id="bio" class="mb-5 mt-3 lead">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perspiciatis rerum a asperiores, ab eos, eius maiores nemo tempore
-            minima voluptates praesentium. Libero minus deleniti esse? Sapiente
-            iste quidem at aperiam!
-          </p>
+          <h1>👋 Hi there, I'm <span id="author-name"></span></h1>
+          <p id="author-bio" class="mb-5 mt-3 lead"></p>
         </div>
       </div>
     </div>
+    <!-- INTRO END -->
+
+    <!-- PORTFOLIO START -->
     <div class="d-flex flex-row flex-wrap my-5" id="portfolio"></div>
+    <!-- PORTFOLIO END -->
+
+    <!-- ITEM PAGE START -->
     <div id="item-page" class="container-fluid h-100">
       <div class="row d-flex align-items-center flex-wrap">
         <div
-          id="feature-image"
-          class="col-md vh-100 feature"
+          id="item-page-image"
+          class="col-md vh-100"
           style="background-image: url('');"
         ></div>
         <div class="col-md p-4">
-          <p class="card-text" id="tags"></p>
-          <h1 id="title"></h1>
-          <p id="text"></p>
-          <a id="link" href="#"></a>
+          <p class="card-text" id="item-page-tags"></p>
+          <h1 id="item-page-title"></h1>
+          <p id="item-page-description"></p>
+          <a id="item-page-link" href="#"></a>
         </div>
-        <p id="close-button" class="text-center text-muted vw-100 my-5">
+        <p
+          id="item-page-close-button"
+          class="text-center text-muted vw-100 my-5"
+        >
           CLOSE
         </p>
       </div>
     </div>
+    <!-- ITEM PAGE END -->
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
@@ -78,6 +83,10 @@
       firebase.initializeApp(firebaseConfig)
     </script>
 
+    <script src="Author.js"></script>
+    <script src="PortfolioItem.js"></script>
+    <script src="Portfolio.js"></script>
+    <script src="ItemPage.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

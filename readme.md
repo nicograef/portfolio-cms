@@ -7,15 +7,15 @@ A dead simple cms for web portfolios. Made with only vanilla javascript, Bootstr
 <!-- ![](img/portfolio-cms-01.jpg)
 ![](img/portfolio-cms-02.jpg) -->
 
-## General Information and Settings
+## Author
 
-**author** _String_
+**name** _String_
 Name of the portfolio author.
 
 **bio** _String_
 Short biography of the author.
 
-**authorImage** _String_
+**image** _String_
 Image/Portrait of the portfolio author.
 
 ## Portfolio Items
@@ -26,11 +26,11 @@ Unique ID of the portfolio item. Given by Firebase
 **title** _String_
 Title of the portfolio item.
 
-**content** _String_
-Content/Text of the portfolio item.
+**description** _String_
+Description of the portfolio item.
 
 **excerpt** _String_
-Excerpt of the content, preferably one sentence. Used to display the item in the portfolio.
+Excerpt of the description. Used to display the item in the portfolio.
 
 **link** _Object_
 
