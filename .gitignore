@@ -1,5 +1,4 @@
 # custom
-public/
 .firebaserc
 database.rules.json
 firebase.json

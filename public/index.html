@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Portfolio CMS</title>
+  </head>
+  <body>
+    <!-- INTRO START -->
+    <div id="intro" class="container my-5">
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+          <img
+            id="author-image"
+            src=""
+            class="img-fluid my-5 mx-auto rounded-circle"
+          />
+          <h1>👋 Hi there, I'm <span id="author-name"></span></h1>
+          <p id="author-bio" class="mb-5 mt-3 lead"></p>
+        </div>
+      </div>
+    </div>
+    <!-- INTRO END -->
+
+    <!-- PORTFOLIO START -->
+    <div class="d-flex flex-row flex-wrap my-5" id="portfolio"></div>
+    <!-- PORTFOLIO END -->
+
+    <!-- ITEM PAGE START -->
+    <div id="item-page" class="container-fluid h-100">
+      <div class="row d-flex align-items-center flex-wrap">
+        <div
+          id="item-page-image"
+          class="col-md vh-100"
+          style="background-image: url('');"
+        ></div>
+        <div class="col-md p-4">
+          <p class="card-text" id="item-page-tags"></p>
+          <h1 id="item-page-title"></h1>
+          <p id="item-page-description"></p>
+          <a id="item-page-link" href="#"></a>
+        </div>
+        <p
+          id="item-page-close-button"
+          class="text-center text-muted vw-100 my-5"
+        >
+          CLOSE
+        </p>
+      </div>
+    </div>
+    <!-- ITEM PAGE END -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: 'AIzaSyApCOXyLzjP2YEZmPjsES3ncfikk7ZRBRo',
+        authDomain: 'portfolio-cms-0742.firebaseapp.com',
+        databaseURL: 'https://portfolio-cms-0742.firebaseio.com',
+        projectId: 'portfolio-cms-0742',
+        storageBucket: 'portfolio-cms-0742.appspot.com',
+        messagingSenderId: '716629582483',
+        appId: '1:716629582483:web:dc49515996032d6d'
+      }
+      firebase.initializeApp(firebaseConfig)
+    </script>
+
+    <script src="js/Author.js"></script>
+    <script src="js/PortfolioItem.js"></script>
+    <script src="js/Portfolio.js"></script>
+    <script src="js/ItemPage.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
