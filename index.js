@@ -1,22 +1,26 @@
-const portfolio = document.getElementById('portfolio')
-portfolio.addEventListener('click', e => {
-  e.preventDefault()
-  let classes = e.target.className
-  let itemId
-  if (classes.indexOf('card-img-overlay') !== -1)
-    itemId = e.target.parentElement.parentElement.id
-  else if (
-    classes.indexOf('card-title') !== -1 ||
-    classes.indexOf('card-text') !== -1
-  )
-    itemId = e.target.parentElement.parentElement.parentElement.id
-  else return
-  location.href = location.origin + '/item.html?id=' + itemId
-})
+const itemPage = document.getElementById('item-page')
+const titleElement = document.getElementById('title')
+const contentElement = document.getElementById('text')
+const tagsElement = document.getElementById('tags')
+const featureImageElement = document.getElementById('feature-image')
+const closeButtonElement = document.getElementById('close-button')
 
-fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
-  .then(response => response.json())
-  .then(json => addPortfolioItems(json))
+const portfolio = document.getElementById('portfolio')
+
+// Get a reference to the database service
+const database = firebase.database()
+database
+  .ref('portfolio/items')
+  .once('value')
+  .then(snapshot => snapshot.val())
+  // .then(data => console.log(data))
+  .then(items => addPortfolioItems(items))
+
+closeButtonElement.addEventListener('click', hideItemPage)
+
+// fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
+//   .then(response => response.json())
+//   .then(json => addPortfolioItems(json))
 
 const dummyImages = [
   'img/mobile.jpg',
@@ -29,13 +33,12 @@ const dummyTags = ['mobile', 'webdesign', 'react']
 
 // add portfolio items
 function addPortfolioItems(items) {
-  items.forEach(item => {
+  items.forEach((item, index) => {
     // DEBUGGING
-    item.image = dummyImages[item.id % 4]
-    item.tags = dummyTags
-    item.content = item.body
+    // item.image = dummyImages[item.id % 4]
+    // item.tags = dummyTags
+    // item.content = item.body
     console.log('adding: ', item)
-
     const newPortfolioItem = createElementForPortfolioItem(item)
     portfolio.appendChild(newPortfolioItem)
   })
@@ -47,7 +50,7 @@ function createElementForPortfolioItem(item) {
   let card = createCardElement(item.image)
   let cardOverlay = createCardOverlayElement()
   let title = createCardTitleElement(item.title)
-  let text = createCardTextElement(item.content)
+  let text = createCardTextElement(item.excerpt)
   let tags = createTagsElementFromTagArray(item.tags)
 
   cardOverlay.appendChild(title)
@@ -62,6 +65,22 @@ function createElementForPortfolioItem(item) {
 
   portfolioItem.addEventListener('mouseleave', e => {
     tags.style.opacity = 0
+  })
+
+  portfolioItem.addEventListener('click', e => {
+    e.preventDefault()
+    titleElement.textContent = item.title
+    contentElement.textContent = item.content
+    featureImageElement.style.backgroundImage = 'url(' + item.image + ')'
+    tagsElement.innerHTML = ''
+    item.tags.forEach(tag => {
+      let newTagElement = document.createElement('span')
+      newTagElement.className = 'badge badge-dark'
+      newTagElement.textContent = tag
+      tagsElement.appendChild(newTagElement)
+      tagsElement.appendChild(document.createTextNode(' '))
+    })
+    showItemPage()
   })
 
   return portfolioItem
@@ -113,7 +132,15 @@ function createCardOverlayElement() {
 
 function createPortfolioItemElement(id) {
   let portfolioItemElement = document.createElement('div')
-  portfolioItemElement.className = 'portfolio-item col-lg-6 p-1'
+  portfolioItemElement.className = 'portfolio-item col-lg-6 col-xl-4 p-1'
   portfolioItemElement.id = id
   return portfolioItemElement
+}
+
+// Helper Functions
+function hideItemPage() {
+  itemPage.style.top = '-100%'
+}
+function showItemPage() {
+  itemPage.style.top = '0'
 }

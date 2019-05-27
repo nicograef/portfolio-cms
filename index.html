@@ -66,6 +66,28 @@
         </div>
       </div> -->
     </div>
+    <div id="item-page" class="container-fluid h-100">
+      <div class="row d-flex align-items-center flex-wrap">
+        <div
+          id="feature-image"
+          class="col-md vh-100 feature"
+          style="background-image: url('');"
+        ></div>
+        <div class="col-md p-4">
+          <p class="card-text" id="tags">
+            <!-- <span class="badge badge-dark">mobile</span>
+              <span class="badge badge-dark">software</span>
+              <span class="badge badge-dark">android</span> -->
+          </p>
+          <h1 id="title"></h1>
+          <p id="text"></p>
+          <a href="#">Open app in Google Play Store</a>
+        </div>
+        <p id="close-button" class="text-center text-muted vw-100 my-5">
+          CLOSE
+        </p>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -85,15 +107,25 @@
       crossorigin="anonymous"
     ></script> -->
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/6.0.4/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <!-- <script defer src="/__/firebase/6.0.4/firebase-auth.js"></script> -->
-    <script defer src="/__/firebase/6.0.4/firebase-database.js"></script>
-    <!-- <script defer src="/__/firebase/6.0.4/firebase-messaging.js"></script> -->
-    <!-- <script defer src="/__/firebase/6.0.4/firebase-storage.js"></script> -->
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: 'AIzaSyApCOXyLzjP2YEZmPjsES3ncfikk7ZRBRo',
+        authDomain: 'portfolio-cms-0742.firebaseapp.com',
+        databaseURL: 'https://portfolio-cms-0742.firebaseio.com',
+        projectId: 'portfolio-cms-0742',
+        storageBucket: 'portfolio-cms-0742.appspot.com',
+        messagingSenderId: '716629582483',
+        appId: '1:716629582483:web:dc49515996032d6d'
+      }
+      firebase.initializeApp(firebaseConfig)
+    </script>
+
     <script src="index.js"></script>
   </body>
 </html>
