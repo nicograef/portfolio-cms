@@ -6,6 +6,10 @@
         "title": "Mobile App Development",
         "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias!",
         "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "link": {
+          "title": "See my LinkedIn Profile",
+          "url": "https://linkedin.com/in/nicograef"
+        },
         "image": "https://portfolio-cms-0742.web.app/img/mobile.jpg",
         "tags": ["mobile", "ux design", "react native"]
       },
@@ -14,6 +18,10 @@
         "title": "Apple Pay Integration",
         "content": "Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         "excerpt": "Expedita veritatis molestiae eveniet omnis ea.",
+        "link": {
+          "title": "See my LinkedIn Profile",
+          "url": "https://linkedin.com/in/nicograef"
+        },
         "image": "https://portfolio-cms-0742.web.app/img/pay.jpg",
         "tags": ["iOS", "hardware", "landing page"]
       },
@@ -22,6 +30,10 @@
         "title": "Wordpress Webdesign",
         "content": "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea!",
         "excerpt": "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed.",
+        "link": {
+          "title": "See my LinkedIn Profile",
+          "url": "https://linkedin.com/in/nicograef"
+        },
         "image": "https://portfolio-cms-0742.web.app/img/coding.jpg",
         "tags": ["webdesign", "wordpress", "cms"]
       }

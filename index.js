@@ -1,6 +1,7 @@
 const itemPage = document.getElementById('item-page')
 const titleElement = document.getElementById('title')
 const contentElement = document.getElementById('text')
+const linkElement = document.getElementById('link')
 const tagsElement = document.getElementById('tags')
 const featureImageElement = document.getElementById('feature-image')
 const closeButtonElement = document.getElementById('close-button')
@@ -71,6 +72,8 @@ function createElementForPortfolioItem(item) {
     e.preventDefault()
     titleElement.textContent = item.title
     contentElement.textContent = item.content
+    linkElement.setAttribute('href', item.link.url)
+    linkElement.textContent = item.link.title
     featureImageElement.style.backgroundImage = 'url(' + item.image + ')'
     tagsElement.innerHTML = ''
     item.tags.forEach(tag => {

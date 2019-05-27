@@ -32,6 +32,13 @@ Content/Text of the portfolio item.
 **excerpt** _String_
 Excerpt of the content, preferably one sentence. Used to display the item in the portfolio.
 
+**link** _Object_
+
+- **title** _String_
+  The text for the link.
+- **url** _String_
+  The url to the link target (href)
+
 **image** _url to jpg/png-file_
 Feature image of the portfolio item.
 
