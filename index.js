@@ -19,26 +19,9 @@ database
 
 closeButtonElement.addEventListener('click', hideItemPage)
 
-// fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
-//   .then(response => response.json())
-//   .then(json => addPortfolioItems(json))
-
-const dummyImages = [
-  'img/mobile.jpg',
-  'img/pay.jpg',
-  'img/coding.jpg',
-  'img/sydney.jpg'
-]
-
-const dummyTags = ['mobile', 'webdesign', 'react']
-
 // add portfolio items
 function addPortfolioItems(items) {
   items.forEach((item, index) => {
-    // DEBUGGING
-    // item.image = dummyImages[item.id % 4]
-    // item.tags = dummyTags
-    // item.content = item.body
     console.log('adding: ', item)
     const newPortfolioItem = createElementForPortfolioItem(item)
     portfolio.appendChild(newPortfolioItem)
