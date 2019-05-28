@@ -82,12 +82,6 @@ class PortfolioItem {
       tags.style.opacity = 0
     })
 
-    portfolioItem.addEventListener('click', e => {
-      e.preventDefault()
-      ItemPage.setItem(this)
-      ItemPage.show()
-    })
-
     return portfolioItem
   }
 }

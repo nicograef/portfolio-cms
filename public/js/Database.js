@@ -20,4 +20,13 @@ class Database {
       .then(snapshot => snapshot.val())
     // .then(data => console.log(data))
   }
+
+  // Get single portfolio item
+  portfolioItem(itemId) {
+    return this.database
+      .ref('portfolio/items/' + itemId)
+      .once('value')
+      .then(snapshot => snapshot.val())
+    // .then(data => console.log(data))
+  }
 }
