@@ -13,7 +13,7 @@ class Database {
   }
 
   // Get portfolio items from database
-  portfolioItems() {
+  allPortfolioItems() {
     return this.database
       .ref('portfolio/items')
       .once('value')

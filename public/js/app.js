@@ -1,33 +1,66 @@
-// Loader Element
-const loaderElement = document.getElementById('loader')
+class UI {
+  // remove the loader element and show everything else
+  static showPage() {
+    document.getElementById('loader').remove()
+    document.getElementById('main').className = ''
+  }
 
-// Main Element
-const mainElement = document.getElementById('main')
+  static setAuthor(name, bio, image) {
+    document.getElementById('author-name').textContent = name
+    document.getElementById('author-bio').textContent = bio
+    document.getElementById('author-image').src = image
+  }
 
-// Initiate author handler, portfolio handler and database handler
-const author = new Author('author-name', 'author-bio', 'author-image')
-const portfolio = new Portfolio('portfolio')
+  static addPortfolioItem(item) {
+    const newItem = PortfolioItem.createElement(item)
+    newItem.addEventListener('click', e => UI.showItemPage(item))
+    document.getElementById('portfolio').appendChild(newItem)
+  }
+
+  static showItemPage(item) {
+    document.getElementById('item-page-title').textContent = item.title
+    document.getElementById('item-page-description').textContent =
+      item.description
+    document.getElementById('item-page-link').textContent = item.link.title
+    document
+      .getElementById('item-page-link')
+      .setAttribute('href', item.link.url)
+    document.getElementById('item-page-image').style.backgroundImage =
+      'url(' + item.image + ')'
+    document.getElementById('item-page-tags').innerHTML = item.tags
+      .map(tag => `<span class='badge badge-dark'>${tag}</span>`)
+      .join(' ')
+
+    document.getElementById('item-page').style.top = '0'
+  }
+
+  static hideItemPage() {
+    document.getElementById('item-page').style.top = '-100%'
+  }
+}
+
 const database = new Database()
-
-loadAuthor()
-  .then(loadPortfolio)
-  .then(showPage)
 
 // Load portfolio (items) from database, create html elements for each item and add them to the page
 function loadPortfolio() {
-  return database
-    .portfolioItems()
-    .then(items => portfolio.addAll(items))
-    .then(showPage)
+  return database.allPortfolioItems().then(items => {
+    for (let itemId in items) {
+      UI.addPortfolioItem(items[itemId])
+    }
+  })
 }
 
 // load author data from database and fill the intro/author html elements with the information
 function loadAuthor() {
-  return database.author().then(data => author.update(data))
+  return database
+    .author()
+    .then(data => UI.setAuthor(data.name, data.bio, data.image))
 }
 
-// remove the loader element and show everything else
-function showPage() {
-  loaderElement.remove()
-  mainElement.className = ''
-}
+loadAuthor()
+  .then(loadPortfolio)
+  .then(UI.showPage)
+
+document
+  .getElementById('item-page-close-button')
+  .addEventListener('click', UI.hideItemPage)

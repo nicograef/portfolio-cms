@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>Portfolio CMS</title>
+  </head>
+  <body>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              Author
+            </div>
+            <div class="card-body">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" id="author-name" class="form-control" />
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Bio</span>
+                </div>
+                <textarea
+                  id="author-bio"
+                  class="form-control"
+                  rows="4"
+                ></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="author-image"
+                    aria-describedby="inputGroupFileAddon01"
+                  />
+                  <label class="custom-file-label" for="inputGroupFile01"
+                    >Choose file</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: 'AIzaSyApCOXyLzjP2YEZmPjsES3ncfikk7ZRBRo',
+        authDomain: 'portfolio-cms-0742.firebaseapp.com',
+        databaseURL: 'https://portfolio-cms-0742.firebaseio.com',
+        projectId: 'portfolio-cms-0742',
+        storageBucket: 'portfolio-cms-0742.appspot.com',
+        messagingSenderId: '716629582483',
+        appId: '1:716629582483:web:dc49515996032d6d'
+      }
+      firebase.initializeApp(firebaseConfig)
+    </script>
+
+    <script src="js/AuthorEdit.js"></script>
+    <script src="js/Database.js"></script>
+    <script src="js/edit.js"></script>
+  </body>
+</html>
