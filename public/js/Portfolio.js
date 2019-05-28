@@ -1,6 +1,7 @@
 class Portfolio {
-  constructor(portfolioElement) {
-    this.portfolioElement = portfolioElement
+  constructor(portfolioElementId) {
+    this.portfolioElement = document.getElementById(portfolioElementId)
+    this.items = []
   }
   // add portfolio items
   addAll(items) {
@@ -10,6 +11,7 @@ class Portfolio {
   add(item) {
     // console.log('adding: ', item)
     let newPortfolioItem = new PortfolioItem(item)
+    this.items.push(newPortfolioItem)
     this.portfolioElement.appendChild(newPortfolioItem.createElement())
   }
 }

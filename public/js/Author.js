@@ -1,11 +1,11 @@
 class Author {
-  constructor(nameElement, bioElement, imageElement) {
+  constructor(nameElementId, bioElementId, imageElementId) {
     this.name = ''
     this.bio = ''
     this.image = ''
-    this.nameElement = nameElement
-    this.bioElement = bioElement
-    this.imageElement = imageElement
+    this.nameElement = document.getElementById(nameElementId)
+    this.bioElement = document.getElementById(bioElementId)
+    this.imageElement = document.getElementById(imageElementId)
   }
 
   update(newData) {
