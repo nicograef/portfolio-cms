@@ -5,10 +5,13 @@ class UI {
     document.getElementById('main').className = ''
   }
 
-  static setAuthor(name, bio, image) {
-    document.getElementById('author-name').textContent = name
-    document.getElementById('author-bio').textContent = bio
-    document.getElementById('author-image').src = image
+  static setAuthor(author) {
+    document.getElementById('author-name').textContent = author.name
+    document.getElementById('author-bio').textContent = author.bio
+    document.getElementById('author-image').src = author.image
+
+    document.getElementById('author-profession').textContent = author.profession
+    document.getElementById('author-greeting').textContent = author.profession.length ? '' : "👋 Hi there, I'm "
   }
 
   static addPortfolioItem(item) {
@@ -19,14 +22,10 @@ class UI {
 
   static showItemPage(item) {
     document.getElementById('item-page-title').textContent = item.title
-    document.getElementById('item-page-description').textContent =
-      item.description
+    document.getElementById('item-page-description').textContent = item.description
     document.getElementById('item-page-link').textContent = item.link.title
-    document
-      .getElementById('item-page-link')
-      .setAttribute('href', item.link.url)
-    document.getElementById('item-page-image').style.backgroundImage =
-      'url(' + item.image + ')'
+    document.getElementById('item-page-link').setAttribute('href', item.link.url)
+    document.getElementById('item-page-image').style.backgroundImage = 'url(' + item.image + ')'
     document.getElementById('item-page-tags').innerHTML = item.tags
       .map(tag => `<span class='badge badge-dark'>${tag}</span>`)
       .join(' ')
@@ -39,11 +38,9 @@ class UI {
   }
 }
 
-const database = new Database()
-
 // Load portfolio (items) from database, create html elements for each item and add them to the page
 function loadPortfolio() {
-  return database.allPortfolioItems().then(items => {
+  return Database.allPortfolioItems().then(items => {
     for (let itemId in items) {
       UI.addPortfolioItem(items[itemId])
     }
@@ -52,15 +49,11 @@ function loadPortfolio() {
 
 // load author data from database and fill the intro/author html elements with the information
 function loadAuthor() {
-  return database
-    .author()
-    .then(data => UI.setAuthor(data.name, data.bio, data.image))
+  return Database.author().then(author => UI.setAuthor(author))
 }
 
 loadAuthor()
   .then(loadPortfolio)
   .then(UI.showPage)
 
-document
-  .getElementById('item-page-close-button')
-  .addEventListener('click', UI.hideItemPage)
+document.getElementById('item-page-close-button').addEventListener('click', UI.hideItemPage)

@@ -15,8 +15,11 @@ Name of the portfolio author.
 **bio** _String_
 Short biography of the author.
 
-**image** _String_
+**image** _url to jpg/png-file_
 Image/Portrait of the portfolio author.
+
+**profession** _String_ _(optional)_
+Profession of the portfolio author.
 
 ## Portfolio Items
 

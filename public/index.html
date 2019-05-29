@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -15,7 +12,7 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="frontend.css" />
     <link rel="stylesheet" href="loader.css" />
 
     <title>Portfolio CMS</title>
@@ -27,12 +24,9 @@
       <div id="intro" class="container my-5">
         <div class="row">
           <div class="col-md-6 mx-auto text-center">
-            <img
-              id="author-image"
-              src=""
-              class="img-fluid my-5 mx-auto rounded-circle"
-            />
-            <h1>👋 Hi there, I'm <span id="author-name"></span></h1>
+            <img id="author-image" src="" class="img-fluid my-5 mx-auto rounded-circle" />
+            <h1><span id="author-greeting"></span><span id="author-name"></span></h1>
+            <h4 id="author-profession"></h4>
             <p id="author-bio" class="mb-5 mt-3 lead"></p>
           </div>
         </div>
@@ -46,21 +40,14 @@
       <!-- ITEM PAGE START -->
       <div id="item-page" class="container-fluid h-100">
         <div class="row d-flex align-items-center flex-wrap">
-          <div
-            id="item-page-image"
-            class="col-md vh-100"
-            style="background-image: url('');"
-          ></div>
+          <div id="item-page-image" class="col-md vh-100" style="background-image: url('');"></div>
           <div class="col-md p-4">
             <p class="card-text" id="item-page-tags"></p>
             <h1 id="item-page-title"></h1>
             <p id="item-page-description"></p>
             <a id="item-page-link" href="#"></a>
           </div>
-          <p
-            id="item-page-close-button"
-            class="text-center text-muted vw-100 my-5"
-          >
+          <p id="item-page-close-button" class="text-center text-muted vw-100 my-5">
             CLOSE
           </p>
         </div>
@@ -89,6 +76,6 @@
 
     <script src="js/PortfolioItem.js"></script>
     <script src="js/Database.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/frontend.js"></script>
   </body>
 </html>

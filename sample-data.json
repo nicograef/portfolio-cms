@@ -2,6 +2,7 @@
   "portfolio": {
     "author": {
       "name": "Nico Gräf",
+      "profession": "Web Developer",
       "bio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum a asperiores, ab eos, eius maiores nemo tempore minima voluptates praesentium. Libero minus deleniti esse? Sapiente iste quidem at aperiam!",
       "image": "https://portfolio-cms-0742.web.app/img/author.jpg"
     },

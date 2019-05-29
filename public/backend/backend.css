@@ -1,0 +1,15 @@
+#author-image {
+  max-width: 200px;
+}
+
+.portfolio-item .image {
+  width: 100px;
+}
+
+.card-deck:nth-child(2n) {
+  flex-basis: 100% !important;
+}
+
+/* #portfolio .media:nth-of-type(odd) {
+  background: #eeeeee;
+} */
