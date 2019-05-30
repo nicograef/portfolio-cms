@@ -244,8 +244,8 @@ document.getElementById('item-form').addEventListener('submit', e => {
   image.style.borderColor = image.value.length ? '' : 'red'
   description.style.borderColor = description.value.length ? '' : 'red'
   tags.style.borderColor = tags.value.length ? '' : 'red'
-  linkUrl.style.borderColor = linkUrl.value.length ? '' : 'red'
-  linkTitle.style.borderColor = linkTitle.value.length ? '' : 'red'
+  // linkUrl.style.borderColor = linkUrl.value.length ? '' : 'red'
+  // linkTitle.style.borderColor = linkTitle.value.length ? '' : 'red'
 
   setTimeout(() => {
     title.style.borderColor = ''
@@ -253,8 +253,8 @@ document.getElementById('item-form').addEventListener('submit', e => {
     image.style.borderColor = ''
     description.style.borderColor = ''
     tags.style.borderColor = ''
-    linkUrl.style.borderColor = ''
-    linkTitle.style.borderColor = ''
+    // linkUrl.style.borderColor = ''
+    // linkTitle.style.borderColor = ''
   }, 5000)
 
   if (
@@ -262,9 +262,9 @@ document.getElementById('item-form').addEventListener('submit', e => {
     excerpt.value === '' ||
     image.value === '' ||
     description.value === '' ||
-    tags.value === '' ||
-    linkUrl.value === '' ||
-    linkTitle.value === ''
+    tags.value === ''
+    // || linkUrl.value === '' ||
+    // linkTitle.value === ''
   ) {
     UI.showAlert('warning', 'Please check the red fields.')
     return
