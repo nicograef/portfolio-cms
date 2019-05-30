@@ -38,7 +38,7 @@ Description of the portfolio item.
 **excerpt** _String_
 Excerpt of the description. Used to display the item in the portfolio.
 
-**link** _Object_
+**link** _Object_ _(optional)_
 
 - **title** _String_
   The text for the link.
