@@ -26,6 +26,9 @@ Profession of the portfolio author.
 **id** _String_
 Unique ID of the portfolio item. Given by Firebase
 
+**created** _Number_
+UTC Timestamp created when a new item is created. (Date.now())
+
 **title** _String_
 Title of the portfolio item.
 
