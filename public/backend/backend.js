@@ -73,6 +73,62 @@ class UI {
     })
   }
 
+  static updatePortfolioItem(item) {
+    const date = new Date(item.created).toString().split(' ')[1] + ' ' + new Date(item.created).toString().split(' ')[3]
+    const tags = item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ')
+
+    const div = document.getElementById(item.id)
+    div.innerHTML = `
+      <img src="${item.image}" class="card-img-top" alt="${item.title}" />
+      <div class="card-body">
+        <h5 class="card-title">${item.title}</h5>
+        <p class="card-text">${item.description.substring(0, 200) + '...'}</p>
+        ${tags}
+        </div>
+      <div class="card-footer">
+        <small class="text-muted">${date}</small>
+        <span class="float-right">
+        <span class="d-none delete-question">Delete?</span>
+        <a href="#" class="card-link text-danger delete-btn">delete</a>
+        <a href="#" class="d-none card-link delete-no-btn">no</a>
+        <a href="#" class="d-none card-link text-danger delete-yes-btn">yes</a>
+        <a href="#" class="card-link edit-btn">edit</a>
+        </span>
+      </div>
+    `
+    div.querySelector('.edit-btn').addEventListener('click', e => {
+      e.preventDefault()
+      UI.loadItemToEdit(item)
+    })
+    div.querySelector('.delete-btn').addEventListener('click', e => {
+      e.preventDefault()
+
+      div.querySelector('.delete-question').classList.remove('d-none')
+      div.querySelector('.delete-no-btn').classList.remove('d-none')
+      div.querySelector('.delete-yes-btn').classList.remove('d-none')
+      div.querySelector('.delete-btn').classList.add('d-none')
+      div.querySelector('.edit-btn').classList.add('d-none')
+
+      setTimeout(() => div.querySelector('.delete-no-btn').click(), 5000)
+    })
+    div.querySelector('.delete-no-btn').addEventListener('click', e => {
+      e.preventDefault()
+
+      div.querySelector('.delete-question').classList.add('d-none')
+      div.querySelector('.delete-no-btn').classList.add('d-none')
+      div.querySelector('.delete-yes-btn').classList.add('d-none')
+      div.querySelector('.delete-btn').classList.remove('d-none')
+      div.querySelector('.edit-btn').classList.remove('d-none')
+    })
+    div.querySelector('.delete-yes-btn').addEventListener('click', e => {
+      e.preventDefault()
+      Database.deletePortfolioItem(item).then(
+        result => document.getElementById(item.id).remove(),
+        err => UI.showAlert('danger', 'Something went wrong. Try again!')
+      )
+    })
+  }
+
   static loadItemToEdit(item) {
     document.getElementById('item-form').focus()
     document.getElementById('item-form').parentElement.parentElement.scrollIntoView()
@@ -226,17 +282,26 @@ document.getElementById('item-form').addEventListener('submit', e => {
     }
   }
 
+  // DEBUGGING
+  // id.value = ''
+
   if (id.value === '') {
     item.created = Date.now()
     Database.addPortfolioItem(item).then(
-      result => UI.showAlert('success', 'Item added to your portfolio!'),
+      result => {
+        UI.showAlert('success', 'Item added to your portfolio!')
+        UI.addPortfolioItem(item)
+      },
       err => UI.showAlert('danger', 'Something went wrong. Try again!')
     )
   } else {
     item.id = id.value
     item.created = Number(created.value)
     Database.updatePortfolioItem(item).then(
-      result => UI.showAlert('success', 'Item added to your portfolio!'),
+      result => {
+        UI.showAlert('success', 'Item was updated!')
+        UI.updatePortfolioItem(item)
+      },
       err => UI.showAlert('danger', 'Something went wrong. Try again!')
     )
   }
