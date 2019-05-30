@@ -17,7 +17,8 @@
           "url": "https://linkedin.com/in/nicograef"
         },
         "image": "https://portfolio-cms-0742.web.app/img/mobile.jpg",
-        "tags": ["mobile", "ux design", "react native"]
+        "tags": ["mobile", "ux design", "react native"],
+        "created": 1559214780225
       },
       "234567891": {
         "id": "234567891",
@@ -29,7 +30,8 @@
           "url": "https://linkedin.com/in/nicograef"
         },
         "image": "https://portfolio-cms-0742.web.app/img/pay.jpg",
-        "tags": ["iOS", "hardware", "landing page"]
+        "tags": ["iOS", "hardware", "landing page"],
+        "created": 1559214780225
       },
       "345678912": {
         "id": "345678912",
@@ -41,7 +43,8 @@
           "url": "https://linkedin.com/in/nicograef"
         },
         "image": "https://portfolio-cms-0742.web.app/img/coding.jpg",
-        "tags": ["webdesign", "wordpress", "cms"]
+        "tags": ["webdesign", "wordpress", "cms"],
+        "created": 1559214780225
       }
     }
   }

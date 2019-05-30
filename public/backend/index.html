@@ -62,10 +62,21 @@
         <div class="col-lg">
           <div class="card">
             <div class="card-header">
-              New Portfolio Item
+              <span id="item-form-title">Create New Portfolio Item</span>
+              <a href="" id="new-item-button-form" class="card-link float-right d-none">create new</a>
             </div>
             <div class="card-body">
-              <form id="new-item-form">
+              <form id="item-form">
+                <div id="id-and-created" class="form-row d-none">
+                  <div class="form-group col">
+                    <label for="id">ID</label>
+                    <input disabled type="text" class="form-control" id="id" />
+                  </div>
+                  <div class="form-group col">
+                    <label for="created">Created</label>
+                    <input disabled type="number" class="form-control" id="created" />
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="title">Title</label>
                   <input type="text" class="form-control" id="title" />
@@ -100,8 +111,8 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" id="new-item-submit" class="btn btn-light w-100">
-                  Add Item to Portfolio
+                <button type="submit" id="item-submit" class="btn btn-light w-100">
+                  Add to Portfolio
                 </button>
               </form>
             </div>
@@ -110,73 +121,10 @@
       </div>
     </div>
     <div class="container-fluid my-5">
-      <div class="card-deck">
-        <div class="card">
-          <img src="https://portfolio-cms-0742.web.app/img/coding.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This content
-              is a little bit longer.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://portfolio-cms-0742.web.app/img/coding.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://portfolio-cms-0742.web.app/img/coding.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://portfolio-cms-0742.web.app/img/coding.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://portfolio-cms-0742.web.app/img/coding.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This card has
-              even longer content than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="col">
-          <ul id="portfolio" class="list-unstyled"></ul>
-        </div> -->
+      <h2 class="my-3">
+        Portfolio <button type="button" id="new-item-button" class="btn btn-outline-dark">+ add item</button>
+      </h2>
+      <div id="portfolio" class="card-deck m-0"></div>
     </div>
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->

@@ -10,7 +10,7 @@ class Database {
   }
 
   static setAuthor(author) {
-    console.log(author)
+    console.log('updating author: ', author)
 
     return firebase
       .database()
@@ -19,12 +19,37 @@ class Database {
   }
 
   static addPortfolioItem(item) {
-    console.log(item)
+    console.log('adding item: ', item)
+
+    // Get a key for a new portfolio item
+    item.id = firebase
+      .database()
+      .ref()
+      .child('portfolio/items')
+      .push().key
 
     return firebase
       .database()
       .ref('portfolio/items/' + item.id)
       .set(item)
+  }
+
+  static updatePortfolioItem(item) {
+    console.log('updating item: ', item)
+
+    return firebase
+      .database()
+      .ref('portfolio/items/' + item.id)
+      .set(item)
+  }
+
+  static deletePortfolioItem(item) {
+    console.log('deleting item: ', item)
+
+    return firebase
+      .database()
+      .ref('portfolio/items/' + item.id)
+      .set(null)
   }
 
   // Get portfolio items from database

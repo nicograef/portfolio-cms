@@ -2,14 +2,26 @@
   max-width: 200px;
 }
 
-.portfolio-item .image {
-  width: 100px;
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
 }
 
-.card-deck:nth-child(2n) {
-  flex-basis: 100% !important;
+.portfolio-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
 }
 
-/* #portfolio .media:nth-of-type(odd) {
-  background: #eeeeee;
-} */
+.alert {
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem 2rem;
+}

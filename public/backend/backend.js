@@ -6,39 +6,109 @@ class UI {
     document.getElementById('author-image').src = author.image
   }
 
-  static showAuthorAlert(type, message) {
+  static showAlert(type, message) {
     const alertElement = document.createElement('div')
     alertElement.className = 'alert alert-' + type
     alertElement.textContent = message
-    // document.getElementById('author-submit').before(alertElement)
-    document
-      .getElementById('author-submit')
-      .parentNode.insertBefore(alertElement, document.getElementById('author-submit'))
-    setTimeout(() => alertElement.remove(), 3000)
-  }
-
-  static showNewItemAlert(type, message) {
-    const alertElement = document.createElement('div')
-    alertElement.className = 'alert alert-' + type
-    alertElement.textContent = message
-    // document.getElementById('author-submit').before(alertElement)
-    document
-      .getElementById('new-item-submit')
-      .parentNode.insertBefore(alertElement, document.getElementById('new-item-submit'))
+    document.body.insertBefore(alertElement, document.querySelector('.container-fluid'))
     setTimeout(() => alertElement.remove(), 3000)
   }
 
   static addPortfolioItem(item) {
-    const li = document.createElement('li')
-    li.className = 'portfolio-item media py-3 border-bottom'
-    li.innerHTML = `
-    <div style="background: url(${item.image})" class="image mr-3"></div>
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">${item.title}</h5>
-      ${item.description}
-    </div>
+    const date = new Date(item.created).toString().split(' ')[1] + ' ' + new Date(item.created).toString().split(' ')[3]
+    const tags = item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ')
+
+    const div = document.createElement('div')
+    div.className = 'card m-0 portfolio-item'
+    div.id = item.id
+    div.innerHTML = `
+      <img src="${item.image}" class="card-img-top" alt="${item.title}" />
+      <div class="card-body">
+        <h5 class="card-title">${item.title}</h5>
+        <p class="card-text">${item.description.substring(0, 200) + '...'}</p>
+        ${tags}
+        </div>
+      <div class="card-footer">
+        <small class="text-muted">${date}</small>
+        <span class="float-right">
+        <span class="d-none delete-question">Delete?</span>
+        <a href="#" class="card-link text-danger delete-btn">delete</a>
+        <a href="#" class="d-none card-link delete-no-btn">no</a>
+        <a href="#" class="d-none card-link text-danger delete-yes-btn">yes</a>
+        <a href="#" class="card-link edit-btn">edit</a>
+        </span>
+      </div>
     `
-    document.getElementById('portfolio').appendChild(li)
+    document.getElementById('portfolio').appendChild(div)
+    div.querySelector('.edit-btn').addEventListener('click', e => {
+      e.preventDefault()
+      UI.loadItemToEdit(item)
+    })
+    div.querySelector('.delete-btn').addEventListener('click', e => {
+      e.preventDefault()
+
+      div.querySelector('.delete-question').classList.remove('d-none')
+      div.querySelector('.delete-no-btn').classList.remove('d-none')
+      div.querySelector('.delete-yes-btn').classList.remove('d-none')
+      div.querySelector('.delete-btn').classList.add('d-none')
+      div.querySelector('.edit-btn').classList.add('d-none')
+
+      setTimeout(() => div.querySelector('.delete-no-btn').click(), 5000)
+    })
+    div.querySelector('.delete-no-btn').addEventListener('click', e => {
+      e.preventDefault()
+
+      div.querySelector('.delete-question').classList.add('d-none')
+      div.querySelector('.delete-no-btn').classList.add('d-none')
+      div.querySelector('.delete-yes-btn').classList.add('d-none')
+      div.querySelector('.delete-btn').classList.remove('d-none')
+      div.querySelector('.edit-btn').classList.remove('d-none')
+    })
+    div.querySelector('.delete-yes-btn').addEventListener('click', e => {
+      e.preventDefault()
+      Database.deletePortfolioItem(item).then(
+        result => document.getElementById(item.id).remove(),
+        err => UI.showAlert('danger', 'Something went wrong. Try again!')
+      )
+    })
+  }
+
+  static loadItemToEdit(item) {
+    document.getElementById('item-form').focus()
+    document.getElementById('item-form').parentElement.parentElement.scrollIntoView()
+    document.getElementById('id').value = item.id
+    document.getElementById('created').value = item.created
+    document.getElementById('title').value = item.title
+    document.getElementById('excerpt').value = item.excerpt
+    document.getElementById('image').value = item.image
+    document.getElementById('description').value = item.description
+    document.getElementById('tags').value = item.tags.join(', ')
+    document.getElementById('link-url').value = item.link.url
+    document.getElementById('link-title').value = item.link.title
+
+    document.getElementById('id-and-created').classList.remove('d-none')
+    document.getElementById('new-item-button-form').classList.remove('d-none')
+    document.getElementById('item-form-title').textContent = 'Edit Portfolio Item'
+    document.getElementById('item-submit').textContent = 'Save Changes'
+  }
+
+  static resetItemForm() {
+    document.getElementById('item-form').focus()
+    document.getElementById('item-form').parentElement.parentElement.scrollIntoView()
+    document.getElementById('id').value = ''
+    document.getElementById('created').value = ''
+    document.getElementById('title').value = ''
+    document.getElementById('excerpt').value = ''
+    document.getElementById('image').value = ''
+    document.getElementById('description').value = ''
+    document.getElementById('tags').value = ''
+    document.getElementById('link-url').value = ''
+    document.getElementById('link-title').value = ''
+
+    document.getElementById('id-and-created').classList.add('d-none')
+    document.getElementById('new-item-button-form').classList.add('d-none')
+    document.getElementById('item-form-title').textContent = 'Create New Portfolio Item'
+    document.getElementById('item-submit').textContent = 'Add to Portfolio'
   }
 }
 
@@ -55,6 +125,16 @@ function loadPortfolio() {
 
 loadPortfolio()
 
+document.getElementById('new-item-button-form').addEventListener('click', e => {
+  e.preventDefault()
+  UI.resetItemForm()
+})
+
+document.getElementById('new-item-button').addEventListener('click', e => {
+  e.preventDefault()
+  UI.resetItemForm()
+})
+
 document.getElementById('author-form').addEventListener('submit', e => {
   e.preventDefault()
 
@@ -68,12 +148,12 @@ document.getElementById('author-form').addEventListener('submit', e => {
 
   if (name.value === '') {
     name.style.borderColor = 'red'
-    UI.showAuthorAlert('warning', 'Please insert a name.')
+    UI.showAlert('warning', 'Please insert a name.')
     return
   }
   if (bio.value === '') {
     bio.style.borderColor = 'red'
-    UI.showAuthorAlert('warning', 'Please insert a biography.')
+    UI.showAlert('warning', 'Please insert a biography.')
     return
   }
 
@@ -85,14 +165,16 @@ document.getElementById('author-form').addEventListener('submit', e => {
   }
 
   Database.setAuthor(author).then(
-    result => UI.showAuthorAlert('success', 'Information saved!'),
-    err => UI.showAuthorAlert('danger', 'Something went wrong. Try again!')
+    result => UI.showAlert('success', 'Information saved!'),
+    err => UI.showAlert('danger', 'Something went wrong. Try again!')
   )
 })
 
-document.getElementById('new-item-form').addEventListener('submit', e => {
+document.getElementById('item-form').addEventListener('submit', e => {
   e.preventDefault()
 
+  const id = document.getElementById('id')
+  const created = document.getElementById('created')
   const title = document.getElementById('title')
   const excerpt = document.getElementById('excerpt')
   const image = document.getElementById('image')
@@ -109,6 +191,16 @@ document.getElementById('new-item-form').addEventListener('submit', e => {
   linkUrl.style.borderColor = linkUrl.value.length ? '' : 'red'
   linkTitle.style.borderColor = linkTitle.value.length ? '' : 'red'
 
+  setTimeout(() => {
+    title.style.borderColor = ''
+    excerpt.style.borderColor = ''
+    image.style.borderColor = ''
+    description.style.borderColor = ''
+    tags.style.borderColor = ''
+    linkUrl.style.borderColor = ''
+    linkTitle.style.borderColor = ''
+  }, 5000)
+
   if (
     title.value === '' ||
     excerpt.value === '' ||
@@ -118,11 +210,11 @@ document.getElementById('new-item-form').addEventListener('submit', e => {
     linkUrl.value === '' ||
     linkTitle.value === ''
   ) {
-    UI.showNewItemAlert('warning', 'Please check the red fields.')
+    UI.showAlert('warning', 'Please check the red fields.')
     return
   }
 
-  const newItem = {
+  const item = {
     title: title.value,
     excerpt: excerpt.value,
     image: image.value,
@@ -134,15 +226,18 @@ document.getElementById('new-item-form').addEventListener('submit', e => {
     }
   }
 
-  // Get a key for a new portfolio item
-  newItem.id = firebase
-    .database()
-    .ref()
-    .child('portfolio/items')
-    .push().key
-
-  Database.addPortfolioItem(newItem).then(
-    result => UI.showNewItemAlert('success', 'Information saved!'),
-    err => UI.showNewItemAlert('danger', 'Something went wrong. Try again!')
-  )
+  if (id.value === '') {
+    item.created = Date.now()
+    Database.addPortfolioItem(item).then(
+      result => UI.showAlert('success', 'Item added to your portfolio!'),
+      err => UI.showAlert('danger', 'Something went wrong. Try again!')
+    )
+  } else {
+    item.id = id.value
+    item.created = Number(created.value)
+    Database.updatePortfolioItem(item).then(
+      result => UI.showAlert('success', 'Item added to your portfolio!'),
+      err => UI.showAlert('danger', 'Something went wrong. Try again!')
+    )
+  }
 })
