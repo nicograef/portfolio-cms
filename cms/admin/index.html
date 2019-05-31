@@ -15,9 +15,8 @@
     <link rel="stylesheet" href="../css/backend.css" />
 
     <title>Portfolio CMS</title>
-    <script>
-      const portfolioID = 'w8cMhW1exqcSxxtIL88MKhKGrMn1'
-    </script>
+
+    <script src="../portfolioID.js"></script>
   </head>
   <body>
     <div id="alert" class="alert d-none"></div>
@@ -47,7 +46,7 @@
                     <div class="col-md">
                       <div class="form-group">
                         <label for="author-name">Name</label>
-                        <input type="text" class="form-control" id="author-name" />
+                        <input required type="text" class="form-control" id="author-name" />
                       </div>
                       <div class="form-group">
                         <label for="author-profession">Profession <small class="text-muted">optional</small></label>
@@ -95,23 +94,23 @@
                   </div>
                   <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" />
+                    <input required type="text" class="form-control" id="title" />
                   </div>
                   <div class="form-group">
                     <label for="excerpt">Excerpt</label>
-                    <input type="text" class="form-control" id="excerpt" />
+                    <input required type="text" class="form-control" id="excerpt" />
                   </div>
                   <div class="form-group">
                     <label for="image">Image (url)</label>
-                    <input type="url" class="form-control" id="image" />
+                    <input required type="url" class="form-control" id="image" />
                   </div>
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" id="description" rows="4"></textarea>
+                    <textarea required class="form-control" id="description" rows="4"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="excerpt">Tags <small class="text-muted">separated with commas</small></label>
-                    <input type="text" class="form-control" id="tags" />
+                    <input required type="text" class="form-control" id="tags" />
                   </div>
                   <div class="form-row">
                     <div class="col">

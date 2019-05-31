@@ -56,17 +56,10 @@ loginForm.addEventListener('submit', e => {
 authorForm.addEventListener('submit', e => {
   e.preventDefault()
 
-  authorName.style.borderColor = ''
-  authorBio.style.borderColor = ''
-
   if (authorName.value === '') {
-    authorName.style.borderColor = 'red'
+    authorName.classList.add('is-invalid')
+    setTimeout(() => title.classList.remove('is-invalid'), 5000)
     UI.showAlert('warning', 'Please insert a name.')
-    return
-  }
-  if (authorBio.value === '') {
-    authorBio.style.borderColor = 'red'
-    UI.showAlert('warning', 'Please insert a biography.')
     return
   }
 
