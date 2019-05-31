@@ -12,8 +12,8 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="frontend.css" />
-    <link rel="stylesheet" href="loader.css" />
+    <link rel="stylesheet" href="css/frontend.css" />
+    <link rel="stylesheet" href="css/loader.css" />
 
     <title>Portfolio CMS</title>
   </head>
@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col-md-6 mx-auto text-center">
             <img id="author-image" src="" class="img-fluid my-5 mx-auto rounded-circle" />
-            <h1><span id="author-greeting"></span><span id="author-name"></span></h1>
+            <h1><span id="author-greeting" class="d-none">👋 Hi there, I'm </span><span id="author-name"></span></h1>
             <h4 id="author-profession"></h4>
             <p id="author-bio" class="mb-5 mt-3 lead"></p>
           </div>
@@ -47,7 +47,7 @@
             <p id="item-page-description"></p>
             <a id="item-page-link" href="#"></a>
           </div>
-          <p id="item-page-close-button" class="text-center text-muted vw-100 my-5">
+          <p id="btn-close-item-page" class="text-center text-muted vw-100 my-5">
             CLOSE
           </p>
         </div>
@@ -61,21 +61,9 @@
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
 
-    <script>
-      const firebaseConfig = {
-        apiKey: 'AIzaSyApCOXyLzjP2YEZmPjsES3ncfikk7ZRBRo',
-        authDomain: 'portfolio-cms-0742.firebaseapp.com',
-        databaseURL: 'https://portfolio-cms-0742.firebaseio.com',
-        projectId: 'portfolio-cms-0742',
-        storageBucket: 'portfolio-cms-0742.appspot.com',
-        messagingSenderId: '716629582483',
-        appId: '1:716629582483:web:dc49515996032d6d'
-      }
-      firebase.initializeApp(firebaseConfig)
-    </script>
-
     <script src="js/PortfolioItem.js"></script>
     <script src="js/Database.js"></script>
+    <script src="js/frontendUI.js"></script>
     <script src="js/frontend.js"></script>
   </body>
 </html>

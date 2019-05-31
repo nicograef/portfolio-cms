@@ -12,11 +12,12 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="backend.css" />
+    <link rel="stylesheet" href="css/backend.css" />
 
     <title>Portfolio CMS</title>
   </head>
   <body>
+    <div id="alert" class="alert d-none"></div>
     <div class="container-fluid my-5">
       <div class="row">
         <div class="col-lg mb-3">
@@ -63,7 +64,6 @@
           <div class="card">
             <div class="card-header">
               <span id="item-form-title">Create New Portfolio Item</span>
-              <a href="" id="new-item-button-form" class="card-link float-right d-none">create new</a>
             </div>
             <div class="card-body">
               <form id="item-form">
@@ -111,7 +111,7 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" id="item-submit" class="btn btn-light w-100">
+                <button type="submit" id="item-form-submit" class="btn btn-light w-100">
                   Add to Portfolio
                 </button>
               </form>
@@ -122,31 +122,18 @@
     </div>
     <div class="container-fluid my-5">
       <h2 class="my-3">
-        Portfolio <button type="button" id="new-item-button" class="btn btn-outline-dark">+ add item</button>
+        <button type="button" id="btn-new-item" class="btn btn-dark">Add Portfolio Item</button>
+        <button type="button" id="btn-edit-author" class="btn btn-dark">Edit Author</button>
+        <!-- <button type="button" id="new-item-button" class="btn btn-outline-dark">Add Portfolio Item</button> -->
       </h2>
       <div id="portfolio" class="card-deck m-0"></div>
     </div>
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-
-    <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
 
-    <script>
-      const firebaseConfig = {
-        apiKey: 'AIzaSyApCOXyLzjP2YEZmPjsES3ncfikk7ZRBRo',
-        authDomain: 'portfolio-cms-0742.firebaseapp.com',
-        databaseURL: 'https://portfolio-cms-0742.firebaseio.com',
-        projectId: 'portfolio-cms-0742',
-        storageBucket: 'portfolio-cms-0742.appspot.com',
-        messagingSenderId: '716629582483',
-        appId: '1:716629582483:web:dc49515996032d6d'
-      }
-      firebase.initializeApp(firebaseConfig)
-    </script>
-
-    <script src="../js/Database.js"></script>
-    <script src="backend.js"></script>
+    <script src="js/Database.js"></script>
+    <script src="js/backendUI.js"></script>
+    <script src="js/backend.js"></script>
   </body>
 </html>

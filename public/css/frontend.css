@@ -77,10 +77,10 @@
   background: #fff;
 }
 
-#item-page-close-button {
+#btn-close-item-page {
   cursor: pointer;
 }
-#item-page-close-button:hover {
+#btn-close-item-page:hover {
   color: #212529 !important;
 }
 
@@ -88,7 +88,7 @@
   #item-page-image {
     height: 100vh !important;
   }
-  #item-page-close-button {
+  #btn-close-item-page {
     position: absolute;
     right: 0;
     bottom: 0;
