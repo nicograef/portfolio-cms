@@ -214,18 +214,18 @@ class UI {
   }
 
   static markEmptyInputFields() {
-    title.style.borderColor = title.value.length ? '' : 'red'
-    excerpt.style.borderColor = excerpt.value.length ? '' : 'red'
-    image.style.borderColor = image.value.length ? '' : 'red'
-    description.style.borderColor = description.value.length ? '' : 'red'
-    tags.style.borderColor = tags.value.length ? '' : 'red'
+    if (!title.value.length) title.classList.add('is-invalid')
+    if (!excerpt.value.length) excerpt.classList.add('is-invalid')
+    if (!image.value.length) image.classList.add('is-invalid')
+    if (!description.value.length) description.classList.add('is-invalid')
+    if (!tags.value.length) tags.classList.add('is-invalid')
 
     setTimeout(() => {
-      title.style.borderColor = ''
-      excerpt.style.borderColor = ''
-      image.style.borderColor = ''
-      description.style.borderColor = ''
-      tags.style.borderColor = ''
+      title.classList.remove('is-invalid')
+      excerpt.classList.remove('is-invalid')
+      image.classList.remove('is-invalid')
+      description.classList.remove('is-invalid')
+      tags.classList.remove('is-invalid')
     }, 5000)
   }
 }
