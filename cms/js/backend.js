@@ -24,7 +24,12 @@ db.allPortfolioItems().then(items => {
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log(user)
+    if (user.uid !== portfolioID) {
+      firebase.auth().signOut()
+      UI.showAlert('danger', 'Wrong User Account!')
+      return
+    }
+    console.log('logged in', user)
 
     // User is signed in
     loginForm.classList.add('d-none')
