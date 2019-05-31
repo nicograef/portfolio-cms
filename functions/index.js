@@ -12,11 +12,10 @@ exports.initUserData = functions.auth.user().onCreate(user => {
       profession: '',
       bio: '',
       image: 'https://portfolio-cms-0742.web.app/img/author.jpg'
-    },
-    items: {}
+    }
   }
   admin
     .database()
     .ref('/users/' + user.uid)
-    .push(data)
+    .set(data)
 })
