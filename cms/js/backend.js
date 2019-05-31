@@ -9,9 +9,13 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 
+// const portfolioName = location.search.split('?name=')[1]
+const portfolioName = 'nicograef'
+const db = new Database(portfolioName)
+
 UI.init()
-Database.author().then(author => UI.setAuthor(author))
-Database.allPortfolioItems().then(items => {
+db.author().then(author => UI.setAuthor(author))
+db.allPortfolioItems().then(items => {
   for (let itemId in items) {
     UI.addPortfolioItem(items[itemId])
   }
@@ -41,7 +45,7 @@ authorForm.addEventListener('submit', e => {
     profession: authorProfession.value
   }
 
-  Database.setAuthor(author).then(
+  db.setAuthor(author).then(
     result => UI.showAlert('success', 'Information saved!'),
     err => UI.showAlert('danger', 'Something went wrong. Try again!')
   )
@@ -80,7 +84,7 @@ itemForm.addEventListener('submit', e => {
 
   if (id.value === '') {
     item.created = Date.now()
-    Database.addPortfolioItem(item).then(
+    db.addPortfolioItem(item).then(
       result => {
         UI.showAlert('success', 'Item added to your portfolio!')
         UI.addPortfolioItem(item)
@@ -90,7 +94,7 @@ itemForm.addEventListener('submit', e => {
   } else {
     item.id = id.value
     item.created = Number(created.value)
-    Database.updatePortfolioItem(item).then(
+    db.updatePortfolioItem(item).then(
       result => {
         UI.showAlert('success', 'Item was updated!')
         UI.updatePortfolioItem(item)

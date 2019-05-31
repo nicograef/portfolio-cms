@@ -11,7 +11,7 @@ firebase.initializeApp(firebaseConfig)
 
 // Load portfolio (items) from database, create html elements for each item and add them to the page
 function loadPortfolio() {
-  return Database.allPortfolioItems().then(items => {
+  return db.allPortfolioItems().then(items => {
     for (let itemId in items) {
       UI.addPortfolioItem(items[itemId])
     }
@@ -20,8 +20,10 @@ function loadPortfolio() {
 
 // load author data from database and fill the intro/author html elements with the information
 function loadAuthor() {
-  return Database.author().then(author => UI.setAuthor(author))
+  return db.author().then(author => UI.setAuthor(author))
 }
+
+const db = new Database(portfolioID)
 
 UI.init()
 loadAuthor()
