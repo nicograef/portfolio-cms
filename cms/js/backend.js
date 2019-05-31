@@ -9,9 +9,10 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 
-// const portfolioName = location.search.split('?name=')[1]
-const portfolioName = 'nicograef'
-const db = new Database(portfolioName)
+const loginForm = document.getElementById('login-form')
+const page = document.getElementById('main')
+
+const db = new Database(portfolioID)
 
 UI.init()
 db.author().then(author => UI.setAuthor(author))
@@ -19,6 +20,32 @@ db.allPortfolioItems().then(items => {
   for (let itemId in items) {
     UI.addPortfolioItem(items[itemId])
   }
+})
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user)
+
+    // User is signed in
+    loginForm.classList.add('d-none')
+    page.classList.remove('d-none')
+  } else {
+    // User is signed out.
+    page.classList.add('d-none')
+    loginForm.classList.remove('d-none')
+  }
+})
+
+loginForm.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch(err => UI.showAlert('danger', err.message))
 })
 
 authorForm.addEventListener('submit', e => {

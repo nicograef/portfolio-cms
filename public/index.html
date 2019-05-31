@@ -18,31 +18,58 @@
   <body>
     <div class="container text-center my-5">
       <h1 class="jumbotron display-1">Portfolio CMS</h1>
-      <div class="row">
+      <div id="step-1" class="row">
         <div class="col">
-          <h3 class="my-5">Step 1: create an account</h3>
-          <form>
+          <h3 class="my-5"><span class="text-muted">1</span> download the cms</h3>
+          <p>
+            <a
+              href="https://github.com/nicograef/portfolio-cms/archive/master.zip"
+              id="btn-download"
+              class="btn btn-outline-dark"
+              >download</a
+            >
+          </p>
+        </div>
+      </div>
+      <div id="step-2" class="row d-none">
+        <div class="col">
+          <h3 class="my-5"><span class="text-muted">2</span> create an account</h3>
+          <div id="alert" class="alert alert-danger d-none"></div>
+          <form id="signup-form">
             <div class="form-row">
               <div class="col-md mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Email" />
+                <input required type="email" class="form-control" id="email" placeholder="Email" />
               </div>
               <div class="col-md mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Password" />
+                <input required type="password" class="form-control" id="password" placeholder="Password" />
               </div>
               <div class="col-md-auto mb-3">
-                <button type="submit" class="w-100 btn btn-outline-dark">Create</button>
+                <button type="submit" class="w-100 btn btn-outline-dark">create</button>
               </div>
             </div>
           </form>
         </div>
       </div>
-      <div class="row">
+      <div id="step-3" class="row d-none">
         <div class="col">
-          <h3 class="my-5">Step 2: download the cms</h3>
-          <p><a href=""></a></p>
+          <h3 class="my-5"><span class="text-muted">3</span> put this snippet into the header of all html files</h3>
+          <!-- <p>
+            <b class="portfolio-id">7bdewzikzTOYRjKSLVGcHw2oBT43 <small>(example)</small></b>
+          </p> -->
+          <p class="text-center">
+            <code> &lt;script&gt;const portfolioID = '<b class="portfolio-id"></b>'&lt;/script&gt; </code>
+          </p>
+        </div>
+      </div>
+      <div id="step-4" class="row d-none">
+        <div class="col">
+          <h3 class="my-5"><span class="text-muted">4</span> upload the cms to your web host and follow the guide</h3>
         </div>
       </div>
     </div>
+    <p class="text-center text-muted">
+      created by <a href="https://nicograef.com" class="text-decoration-none text-dark">nico graef</a>
+    </p>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/6.1.0/firebase-app.js"></script>

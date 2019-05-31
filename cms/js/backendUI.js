@@ -51,7 +51,7 @@ class UI {
   static showAlert(type, message) {
     alert.textContent = message
     alert.className = `alert alert-${type}`
-    setTimeout(() => (alert.className = `alert d-none`), 3000)
+    setTimeout(() => (alert.className = `alert d-none`), 5000)
   }
 
   static addPortfolioItem(item) {

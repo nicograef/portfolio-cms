@@ -15,126 +15,143 @@
     <link rel="stylesheet" href="../css/backend.css" />
 
     <title>Portfolio CMS</title>
+    <script>
+      const portfolioID = 'w8cMhW1exqcSxxtIL88MKhKGrMn1'
+    </script>
   </head>
   <body>
     <div id="alert" class="alert d-none"></div>
-    <div class="container-fluid my-5">
+    <div class="container my-5">
       <div class="row">
-        <div class="col-lg mb-3">
-          <div class="card">
-            <div class="card-header">
-              Author
-            </div>
-            <div class="card-body">
-              <form id="author-form">
-                <div class="row">
-                  <div class="col-md">
-                    <div class="form-group">
-                      <label for="author-name">Name</label>
-                      <input type="text" class="form-control" id="author-name" />
+        <div class="col-md-6 mx-auto">
+          <h2 class="text-center mb-5">Portfolio CMS</h2>
+          <form id="login-form">
+            <input required type="email" class="form-control mb-3" id="email" placeholder="Email" />
+            <input required type="password" class="form-control mb-3" id="password" placeholder="Password" />
+            <button type="submit" class="w-100 btn btn-dark mb-3">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="main" class="d-none">
+      <div class="container-fluid my-5">
+        <div class="row">
+          <div class="col-lg mb-3">
+            <div class="card">
+              <div class="card-header">
+                Author
+              </div>
+              <div class="card-body">
+                <form id="author-form">
+                  <div class="row">
+                    <div class="col-md">
+                      <div class="form-group">
+                        <label for="author-name">Name</label>
+                        <input type="text" class="form-control" id="author-name" />
+                      </div>
+                      <div class="form-group">
+                        <label for="author-profession">Profession <small class="text-muted">optional</small></label>
+                        <input type="text" class="form-control" id="author-profession" />
+                      </div>
+                      <div class="form-group">
+                        <label for="author-bio">Biography</label>
+                        <textarea class="form-control" id="author-bio" rows="4"></textarea>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="author-profession">Profession <small class="text-muted">optional</small></label>
-                      <input type="text" class="form-control" id="author-profession" />
-                    </div>
-                    <div class="form-group">
-                      <label for="author-bio">Biography</label>
-                      <textarea class="form-control" id="author-bio" rows="4"></textarea>
+                    <div class="col-auto">
+                      <div class="form-group">
+                        <label for="author-image" class="d-block">Image</label>
+                        <img id="author-image" src="" class="img-fluid mx-auto img-thumbnail" />
+                      </div>
                     </div>
                   </div>
-                  <div class="col-auto">
-                    <div class="form-group">
-                      <label for="author-image" class="d-block">Image</label>
-                      <img id="author-image" src="" class="img-fluid mx-auto img-thumbnail" />
+                  <div class="row">
+                    <div class="col">
+                      <button type="submit" id="author-submit" class="btn btn-light w-100">
+                        Save
+                      </button>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <button type="submit" id="author-submit" class="btn btn-light w-100">
-                      Save
-                    </button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg">
-          <div class="card">
-            <div class="card-header">
-              <span id="item-form-title">Create New Portfolio Item</span>
-            </div>
-            <div class="card-body">
-              <form id="item-form">
-                <div id="id-and-created" class="form-row d-none">
-                  <div class="form-group col">
-                    <label for="id">ID</label>
-                    <input disabled type="text" class="form-control" id="id" />
-                  </div>
-                  <div class="form-group col">
-                    <label for="created">Created</label>
-                    <input disabled type="number" class="form-control" id="created" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" class="form-control" id="title" />
-                </div>
-                <div class="form-group">
-                  <label for="excerpt">Excerpt</label>
-                  <input type="text" class="form-control" id="excerpt" />
-                </div>
-                <div class="form-group">
-                  <label for="image">Image (url)</label>
-                  <input type="url" class="form-control" id="image" />
-                </div>
-                <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea class="form-control" id="description" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="excerpt">Tags <small class="text-muted">separated with commas</small></label>
-                  <input type="text" class="form-control" id="tags" />
-                </div>
-                <div class="form-row">
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="link-url">Link (url) <small class="text-muted">optional</small></label>
-                      <input type="url" class="form-control" id="link-url" />
+          <div class="col-lg">
+            <div class="card">
+              <div class="card-header">
+                <span id="item-form-title">Create New Portfolio Item</span>
+              </div>
+              <div class="card-body">
+                <form id="item-form">
+                  <div id="id-and-created" class="form-row d-none">
+                    <div class="form-group col">
+                      <label for="id">ID</label>
+                      <input disabled type="text" class="form-control" id="id" />
+                    </div>
+                    <div class="form-group col">
+                      <label for="created">Created</label>
+                      <input disabled type="number" class="form-control" id="created" />
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="form-group">
-                      <label for="link-title">Link Title <small class="text-muted">optional</small></label>
-                      <input type="text" class="form-control" id="link-title" />
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" />
+                  </div>
+                  <div class="form-group">
+                    <label for="excerpt">Excerpt</label>
+                    <input type="text" class="form-control" id="excerpt" />
+                  </div>
+                  <div class="form-group">
+                    <label for="image">Image (url)</label>
+                    <input type="url" class="form-control" id="image" />
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" rows="4"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="excerpt">Tags <small class="text-muted">separated with commas</small></label>
+                    <input type="text" class="form-control" id="tags" />
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="link-url">Link (url) <small class="text-muted">optional</small></label>
+                        <input type="url" class="form-control" id="link-url" />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="link-title">Link Title <small class="text-muted">optional</small></label>
+                        <input type="text" class="form-control" id="link-title" />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button type="submit" id="item-form-submit" class="btn btn-light w-100">
-                  Add to Portfolio
-                </button>
-              </form>
+                  <button type="submit" id="item-form-submit" class="btn btn-light w-100">
+                    Add to Portfolio
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="container-fluid my-5">
+        <h2 class="my-3">
+          <button type="button" id="btn-new-item" class="btn btn-dark">Add Portfolio Item</button>
+          <button type="button" id="btn-edit-author" class="btn btn-dark">Edit Author</button>
+          <!-- <button type="button" id="new-item-button" class="btn btn-outline-dark">Add Portfolio Item</button> -->
+        </h2>
+        <div id="portfolio" class="card-deck m-0"></div>
+      </div>
     </div>
-    <div class="container-fluid my-5">
-      <h2 class="my-3">
-        <button type="button" id="btn-new-item" class="btn btn-dark">Add Portfolio Item</button>
-        <button type="button" id="btn-edit-author" class="btn btn-dark">Edit Author</button>
-        <!-- <button type="button" id="new-item-button" class="btn btn-outline-dark">Add Portfolio Item</button> -->
-      </h2>
-      <div id="portfolio" class="card-deck m-0"></div>
-    </div>
+    <p class="text-center text-muted">
+      created by <a href="https://nicograef.com" class="text-decoration-none text-dark">nico graef</a>
+    </p>
 
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
-
-    <script>
-      const portfolioID = 'nicograef'
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
 
     <script src="../js/Database.js"></script>
     <script src="../js/backendUI.js"></script>

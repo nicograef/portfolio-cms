@@ -1,13 +1,13 @@
 class Database {
   constructor(portfolioID) {
-    this.baseRef = `portfolio-${portfolioID}`
-    this.authorRef = `portfolio-${portfolioID}/author`
-    this.itemsRef = `portfolio-${portfolioID}/items`
+    this.baseRef = `users/${portfolioID}`
+    this.authorRef = `users/${portfolioID}/author`
+    this.itemsRef = `users/${portfolioID}/items`
   }
 
   // Get author information from database and show it on the page
   author() {
-    console.log(this.authorRef)
+    console.log('getting author data')
 
     return firebase
       .database()
@@ -62,6 +62,8 @@ class Database {
 
   // Get portfolio items from database
   allPortfolioItems() {
+    console.log('getting all portfolio items')
+
     return firebase
       .database()
       .ref(this.itemsRef)
@@ -72,6 +74,7 @@ class Database {
 
   // Get single portfolio item
   portfolioItem(itemId) {
+    console.log('getting portfolio item', itemId)
     return firebase
       .database()
       .ref(`${this.itemsRef}/${itemId}`)
