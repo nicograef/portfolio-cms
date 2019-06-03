@@ -40,8 +40,25 @@ class UI {
   }
 
   static addPortfolioItem(item) {
-    const newItem = PortfolioItem.createElement(item)
+    const tags = item.tags.map(item => `<span class="badge badge-light">${item}</span>`).join(' ')
+
+    const newItem = document.createElement('div')
+    newItem.className = 'portfolio-item col-lg-6 col-xl-4 p-1'
+    newItem.id = item.id
+    newItem.innerHTML = `
+      <div class="card text-white" style="background: url(${item.image})">
+        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+          <h5 class="card-title">${item.title}</h5>
+          <p class="card-text">${item.excerpt}</p>
+          <p class="card-text tags" style="opacity: 0;">${tags}</p>
+        </div>
+      </div>
+    `
+
+    newItem.addEventListener('mouseenter', e => (newItem.querySelector('.tags').style.opacity = 1))
+    newItem.addEventListener('mouseleave', e => (newItem.querySelector('.tags').style.opacity = 0))
     newItem.addEventListener('click', e => UI.showItemPage(item))
+
     portfolio.appendChild(newItem)
   }
 
