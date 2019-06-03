@@ -56,6 +56,16 @@ class UI {
     itemPage.style.top = '0'
   }
 
+  static showInfo(message) {
+    document.getElementById('loader').remove()
+    const info = document.getElementById('info')
+    info.innerHTML = `
+      <div class="container text-center mt-5 mb-3">
+        <h3>${message}</h3>
+      </div>
+    `
+  }
+
   static hideItemPage() {
     itemPage.style.top = '-100%'
   }

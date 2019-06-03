@@ -5,12 +5,6 @@ const emailInput = document.getElementById('email')
 const passwordInput = document.getElementById('password')
 const portfolioIdDisplays = document.querySelectorAll('.portfolio-id')
 
-const step2 = document.getElementById('step-2')
-const step3 = document.getElementById('step-3')
-const step4 = document.getElementById('step-4')
-
-btnDownload.addEventListener('click', e => step2.classList.remove('d-none'))
-
 signupForm.addEventListener('submit', e => {
   e.preventDefault()
 
@@ -24,8 +18,6 @@ signupForm.addEventListener('submit', e => {
       signupForm.remove()
       showAlert('success', 'Account created. Proceed to the next step.')
       updatePortfolioIds(res.user.uid)
-      step3.classList.remove('d-none')
-      step4.classList.remove('d-none')
     })
     .catch(function(error) {
       showAlert('danger', error.message, true)

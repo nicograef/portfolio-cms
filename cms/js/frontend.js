@@ -10,22 +10,31 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 // Load portfolio (items) from database, create html elements for each item and add them to the page
-function loadPortfolio() {
-  return db.allPortfolioItems().then(items => {
-    for (let itemId in items) {
-      UI.addPortfolioItem(items[itemId])
-    }
-  })
+async function loadPortfolio() {
+  const items = await db.allPortfolioItems()
+  for (let itemId in items) {
+    UI.addPortfolioItem(items[itemId])
+  }
 }
 
 // load author data from database and fill the intro/author html elements with the information
-function loadAuthor() {
-  return db.author().then(author => UI.setAuthor(author))
+async function loadAuthor() {
+  const author = await db.author()
+  if (!author) {
+    return 'Please provide a portfolio id in the portfolioID.js file.'
+  } else if (author.name === '') {
+    return 'Please got to <a href="admin">/admin</a> and set up your portfolio.'
+  }
+  UI.setAuthor(author)
+  return null
 }
 
 const db = new Database(portfolioID)
 
 UI.init()
-loadAuthor()
-  .then(loadPortfolio)
-  .then(UI.showPage)
+loadPortfolio()
+  .then(loadAuthor)
+  .then(result => {
+    if (result) UI.showInfo(result)
+    else UI.showPage()
+  })
