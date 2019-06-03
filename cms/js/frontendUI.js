@@ -46,10 +46,10 @@ class UI {
     newItem.className = 'portfolio-item col-lg-6 col-xl-4 p-1'
     newItem.id = item.id
     newItem.innerHTML = `
-      <div class="card text-white" style="background: url(${item.image})">
+      <div class="card text-white" style="background-image: url(${item.image})">
         <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
           <h5 class="card-title">${item.title}</h5>
-          <p class="card-text">${item.excerpt}</p>
+          <p class="card-text">${item.excerpt === '' ? item.description.substring(0, 100) + '...' : item.excerpt}</p>
           <p class="card-text tags" style="opacity: 0;">${tags}</p>
         </div>
       </div>

@@ -13,6 +13,7 @@
     />
 
     <link rel="stylesheet" href="../css/backend.css" />
+    <link rel="stylesheet" href="../css/loader.css" />
 
     <title>Portfolio CMS</title>
 
@@ -20,11 +21,14 @@
   </head>
   <body>
     <div id="alert" class="alert d-none"></div>
-    <div class="container my-5">
+    <div id="headline" class="container my-5 text-center">
+      <h2>Portfolio CMS</h2>
+    </div>
+    <div id="loader" class="d-none"></div>
+    <div id="login-form" class="container d-none">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <h2 class="text-center mb-5">Portfolio CMS</h2>
-          <form id="login-form">
+          <form>
             <input required type="email" class="form-control mb-3" id="email" placeholder="Email" />
             <input required type="password" class="form-control mb-3" id="password" placeholder="Password" />
             <button type="submit" class="w-100 btn btn-dark mb-3">Login</button>
@@ -33,9 +37,9 @@
       </div>
     </div>
     <div id="main" class="d-none">
-      <div class="container-fluid my-5">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-lg mb-3">
+          <div id="author-form-wrapper" class="col mx-auto d-none">
             <div class="card">
               <div class="card-header">
                 Author
@@ -75,7 +79,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg">
+          <div id="item-form-wrapper" class="col-xl-6 mx-auto d-none">
             <div class="card">
               <div class="card-header">
                 <span id="item-form-title">Create New Portfolio Item</span>
@@ -98,10 +102,10 @@
                   </div>
                   <div class="form-group">
                     <label for="excerpt">Excerpt</label>
-                    <input required type="text" class="form-control" id="excerpt" />
+                    <input type="text" class="form-control" id="excerpt" />
                   </div>
                   <div class="form-group">
-                    <label for="image">Image (url)</label>
+                    <label for="image">Image (url)</label> <small class="text-muted">optional</small>
                     <input required type="url" class="form-control" id="image" />
                   </div>
                   <div class="form-group">
@@ -109,8 +113,8 @@
                     <textarea required class="form-control" id="description" rows="4"></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="excerpt">Tags <small class="text-muted">separated with commas</small></label>
-                    <input required type="text" class="form-control" id="tags" />
+                    <label for="excerpt">Tags (separated with commas) <small class="text-muted">optional</small></label>
+                    <input type="text" class="form-control" id="tags" />
                   </div>
                   <div class="form-row">
                     <div class="col">
@@ -135,16 +139,18 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid my-5">
+      <div class="container-fluid">
         <h2 class="my-3">
-          <button type="button" id="btn-new-item" class="btn btn-dark">Add Portfolio Item</button>
+          <button type="button" id="btn-new-item" class="btn btn-dark">+ Add Portfolio Item</button>
           <button type="button" id="btn-edit-author" class="btn btn-dark">Edit Author</button>
-          <!-- <button type="button" id="new-item-button" class="btn btn-outline-dark">Add Portfolio Item</button> -->
+          <a href="../" target="_blank" id="btn-edit-author" class="btn btn-dark float-right">See Frontpage</a>
         </h2>
         <div id="portfolio" class="card-deck m-0"></div>
       </div>
     </div>
-    <p class="text-center text-muted">created by <a href="https://nicograef.com" class="text-muted">nico graef</a></p>
+    <div class="container my-5 text-center">
+      <p class="text-center text-muted">created by <a href="https://nicograef.com" class="text-muted">nico graef</a></p>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>

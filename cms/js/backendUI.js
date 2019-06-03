@@ -1,4 +1,5 @@
 // Author Form Fields
+const authorFormWrapper = document.getElementById('author-form-wrapper')
 const authorForm = document.getElementById('author-form')
 const authorName = document.getElementById('author-name')
 const authorBio = document.getElementById('author-bio')
@@ -6,6 +7,7 @@ const authorImage = document.getElementById('author-image')
 const authorProfession = document.getElementById('author-profession')
 
 // Item Form Fields
+const itemFormWrapper = document.getElementById('item-form-wrapper')
 const itemForm = document.getElementById('item-form')
 const itemFormTitle = document.getElementById('item-form-title')
 const itemFormSubmit = document.getElementById('item-form-submit')
@@ -33,12 +35,12 @@ class UI {
   static init() {
     btnNewItem.addEventListener('click', e => {
       e.preventDefault()
-      UI.resetItemForm()
+      UI.showItemForm()
     })
 
     btnEditAuthor.addEventListener('click', e => {
       e.preventDefault()
-      UI.focusAuthorForm()
+      UI.showAuthorForm()
     })
   }
   static setAuthor(author) {
@@ -106,10 +108,12 @@ class UI {
     })
     div.querySelector('.delete-yes-btn').addEventListener('click', e => {
       e.preventDefault()
-      Database.deletePortfolioItem(item).then(
-        result => document.getElementById(item.id).remove(),
-        err => UI.showAlert('danger', 'Something went wrong. Try again!')
-      )
+      database
+        .deletePortfolioItem(item)
+        .then(
+          result => document.getElementById(item.id).remove(),
+          err => UI.showAlert('danger', 'Something went wrong. Try again!')
+        )
     })
   }
 
@@ -162,10 +166,12 @@ class UI {
     })
     div.querySelector('.delete-yes-btn').addEventListener('click', e => {
       e.preventDefault()
-      Database.deletePortfolioItem(item).then(
-        result => document.getElementById(item.id).remove(),
-        err => UI.showAlert('danger', 'Something went wrong. Try again!')
-      )
+      database
+        .deletePortfolioItem(item)
+        .then(
+          result => document.getElementById(item.id).remove(),
+          err => UI.showAlert('danger', 'Something went wrong. Try again!')
+        )
     })
   }
 
@@ -183,7 +189,7 @@ class UI {
     itemFormTitle.textContent = 'Edit Portfolio Item'
     itemFormSubmit.textContent = 'Save Changes'
 
-    UI.focusItemForm()
+    UI.showItemForm()
   }
 
   static resetItemForm() {
@@ -200,32 +206,37 @@ class UI {
     itemFormTitle.textContent = 'Create New Portfolio Item'
     itemFormSubmit.textContent = 'Add to Portfolio'
 
-    UI.focusItemForm()
+    UI.showItemForm()
   }
 
-  static focusItemForm() {
-    itemForm.focus()
-    itemForm.parentElement.parentElement.scrollIntoView()
+  static showItemForm() {
+    itemFormWrapper.classList.remove('d-none')
+    authorFormWrapper.classList.add('d-none')
+    itemFormWrapper.focus()
+    itemFormWrapper.scrollIntoView()
   }
 
-  static focusAuthorForm() {
-    authorForm.focus()
-    authorForm.parentElement.parentElement.scrollIntoView()
+  static showAuthorForm() {
+    itemFormWrapper.classList.add('d-none')
+    authorFormWrapper.classList.remove('d-none')
+    authorFormWrapper.focus()
+    authorFormWrapper.scrollIntoView()
+  }
+
+  static closeForms() {
+    itemFormWrapper.classList.add('d-none')
+    authorFormWrapper.classList.add('d-none')
   }
 
   static markEmptyInputFields() {
     if (!title.value.length) title.classList.add('is-invalid')
-    if (!excerpt.value.length) excerpt.classList.add('is-invalid')
     if (!image.value.length) image.classList.add('is-invalid')
     if (!description.value.length) description.classList.add('is-invalid')
-    if (!tags.value.length) tags.classList.add('is-invalid')
 
     setTimeout(() => {
       title.classList.remove('is-invalid')
-      excerpt.classList.remove('is-invalid')
       image.classList.remove('is-invalid')
       description.classList.remove('is-invalid')
-      tags.classList.remove('is-invalid')
     }, 5000)
   }
 }

@@ -11,29 +11,32 @@ firebase.initializeApp(firebaseConfig)
 
 const loginForm = document.getElementById('login-form')
 const page = document.getElementById('main')
+// Loader Element
+const loader = document.getElementById('loader')
 
 const db = new Database(portfolioID)
 
-UI.init()
-db.author().then(author => UI.setAuthor(author))
-db.allPortfolioItems().then(items => {
-  for (let itemId in items) {
-    UI.addPortfolioItem(items[itemId])
-  }
-})
-
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    loader.classList.remove('d-none')
     if (user.uid !== portfolioID) {
       firebase.auth().signOut()
       UI.showAlert('danger', 'Wrong User Account!')
       return
     }
-    console.log('logged in', user)
+    // console.log('logged in', user)
 
     // User is signed in
-    loginForm.classList.add('d-none')
-    page.classList.remove('d-none')
+    loginForm.remove()
+    UI.init()
+    db.author().then(author => UI.setAuthor(author))
+    db.allPortfolioItems().then(items => {
+      for (let itemId in items) {
+        UI.addPortfolioItem(items[itemId])
+      }
+      loader.remove()
+      page.classList.remove('d-none')
+    })
   } else {
     // User is signed out.
     page.classList.add('d-none')
@@ -71,7 +74,10 @@ authorForm.addEventListener('submit', e => {
   }
 
   db.setAuthor(author).then(
-    result => UI.showAlert('success', 'Information saved!'),
+    result => {
+      UI.closeForms()
+      UI.showAlert('success', 'Information saved!')
+    },
     err => UI.showAlert('danger', 'Something went wrong. Try again!')
   )
 })
@@ -81,13 +87,7 @@ itemForm.addEventListener('submit', e => {
 
   UI.markEmptyInputFields()
 
-  if (
-    title.value === '' ||
-    excerpt.value === '' ||
-    image.value === '' ||
-    description.value === '' ||
-    tags.value === ''
-  ) {
+  if (title.value === '' || image.value === '' || description.value === '') {
     UI.showAlert('warning', 'Please check the red fields.')
     return
   }
@@ -111,8 +111,9 @@ itemForm.addEventListener('submit', e => {
     item.created = Date.now()
     db.addPortfolioItem(item).then(
       result => {
-        UI.showAlert('success', 'Item added to your portfolio!')
+        UI.closeForms()
         UI.addPortfolioItem(item)
+        UI.showAlert('success', 'Item added to your portfolio!')
       },
       err => UI.showAlert('danger', 'Something went wrong. Try again!')
     )
@@ -121,8 +122,9 @@ itemForm.addEventListener('submit', e => {
     item.created = Number(created.value)
     db.updatePortfolioItem(item).then(
       result => {
-        UI.showAlert('success', 'Item was updated!')
+        UI.closeForms()
         UI.updatePortfolioItem(item)
+        UI.showAlert('success', 'Item was updated!')
       },
       err => UI.showAlert('danger', 'Something went wrong. Try again!')
     )
