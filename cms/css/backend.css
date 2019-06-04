@@ -8,6 +8,10 @@
   grid-gap: 1rem;
 }
 
+.portfolio-item:only-child {
+  max-width: 600px;
+}
+
 .portfolio-item img {
   object-fit: cover;
   width: 100%;
@@ -16,10 +20,10 @@
 
 .alert {
   z-index: 99999;
-  position: fixed;
+  /* position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  right: 0; */
   width: 100%;
   border: none;
   border-radius: 0;

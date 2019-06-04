@@ -20,10 +20,10 @@
     <script src="../portfolioID.js"></script>
   </head>
   <body>
-    <div id="alert" class="alert d-none"></div>
     <div id="headline" class="container my-5 text-center">
       <h2>Portfolio CMS</h2>
     </div>
+    <div id="alert" class="alert d-none"></div>
     <div id="loader" class="d-none"></div>
     <div id="login-form" class="container d-none">
       <div class="row">
@@ -143,7 +143,7 @@
         <h2 class="my-3">
           <button type="button" id="btn-new-item" class="btn btn-dark">+ Add Portfolio Item</button>
           <button type="button" id="btn-edit-author" class="btn btn-dark">Edit Author</button>
-          <a href="../" target="_blank" id="btn-edit-author" class="btn btn-dark float-right">See Frontpage</a>
+          <a href="../" target="_blank" id="btn-edit-author" class="btn btn-outline-dark">See Frontpage</a>
         </h2>
         <div id="portfolio" class="card-deck m-0"></div>
       </div>
@@ -153,8 +153,9 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-storage.js"></script>
 
     <script src="../js/Database.js"></script>
     <script src="../js/backendUI.js"></script>

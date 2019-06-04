@@ -31,8 +31,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     UI.init()
     db.author().then(author => UI.setAuthor(author))
     db.allPortfolioItems().then(items => {
+      let counter = 0
       for (let itemId in items) {
-        UI.addPortfolioItem(items[itemId])
+        if (counter > 1) continue
+        UI.addPortfolioItem(items[itemId], db)
+        counter++
       }
       loader.remove()
       page.classList.remove('d-none')
@@ -97,7 +100,7 @@ itemForm.addEventListener('submit', e => {
     excerpt: excerpt.value,
     image: image.value,
     description: description.value,
-    tags: tags.value.replace(/,\s+/g, ',').split(','),
+    tags: tags.value.replace(/\s*,\s*/g, ',').length ? tags.value.replace(/\s*,\s*/g, ',').split(',') : null,
     link: {
       title: linkTitle.value,
       url: linkUrl.value
@@ -105,14 +108,14 @@ itemForm.addEventListener('submit', e => {
   }
 
   // DEBUGGING
-  // id.value = ''
+  id.value = ''
 
   if (id.value === '') {
     item.created = Date.now()
     db.addPortfolioItem(item).then(
       result => {
         UI.closeForms()
-        UI.addPortfolioItem(item)
+        UI.addPortfolioItem(item, db)
         UI.showAlert('success', 'Item added to your portfolio!')
       },
       err => UI.showAlert('danger', 'Something went wrong. Try again!')
@@ -120,7 +123,7 @@ itemForm.addEventListener('submit', e => {
   } else {
     item.id = id.value
     item.created = Number(created.value)
-    db.updatePortfolioItem(item).then(
+    db.updatePortfolioItem(item, db).then(
       result => {
         UI.closeForms()
         UI.updatePortfolioItem(item)

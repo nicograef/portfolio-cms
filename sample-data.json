@@ -1,51 +1,129 @@
 {
-  "users": {
-    "Lkjlp8RBWYXXbRVPAUZRiato0dA3": {
-      "author": {
-        "name": "Nico Gräf",
-        "profession": "Web Developer",
-        "bio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum a asperiores, ab eos, eius maiores nemo tempore minima voluptates praesentium. Libero minus deleniti esse? Sapiente iste quidem at aperiam!",
-        "image": "https://portfolio-cms-0742.web.app/img/author.jpg"
+  "users" : {
+    "Lkjlp8RBWYXXbRVPAUZRiato0dA3" : {
+      "author" : {
+        "bio" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis rerum a asperiores, ab eos, eius maiores nemo tempore minima voluptates praesentium. Libero minus deleniti esse? Sapiente iste quidem at aperiam!",
+        "image" : "https://portfolio-cms-0742.web.app/img/author.jpg",
+        "name" : "Nico Gräf",
+        "profession" : "Web Developer"
       },
-      "items": {
-        "-Lg81dURN0Pay6JHgmYt": {
-          "id": "-Lg81dURN0Pay6JHgmYt",
-          "title": "Mobile App Development",
-          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias!",
-          "excerpt": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          "link": {
-            "title": "See my LinkedIn Profile",
-            "url": "https://linkedin.com/in/nicograef"
+      "items" : {
+        "-Lg81dURN0Pay6JHgmYt" : {
+          "created" : 1559214780225,
+          "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias!",
+          "excerpt" : "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "id" : "-Lg81dURN0Pay6JHgmYt",
+          "image" : "https://portfolio-cms-0742.web.app/img/mobile.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
           },
-          "image": "https://portfolio-cms-0742.web.app/img/mobile.jpg",
-          "tags": ["mobile", "ux design", "react native"],
-          "created": 1559214780225
+          "tags" : [ "mobile", "ux design", "react native" ],
+          "title" : "Mobile App Development"
         },
-        "-Lg81gEDGkTD7HZKFIUb": {
-          "id": "-Lg81gEDGkTD7HZKFIUb",
-          "title": "Apple Pay Integration",
-          "description": "Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          "excerpt": "Expedita veritatis molestiae eveniet omnis ea.",
-          "link": {
-            "title": "See my LinkedIn Profile",
-            "url": "https://linkedin.com/in/nicograef"
+        "-Lg81gEDGkTD7HZKFIUb" : {
+          "created" : 1559224829278,
+          "description" : "Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "excerpt" : "Expedita veritatis molestiae eveniet omnis ea.",
+          "id" : "-Lg81gEDGkTD7HZKFIUb",
+          "image" : "https://portfolio-cms-0742.web.app/img/pay.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
           },
-          "image": "https://portfolio-cms-0742.web.app/img/pay.jpg",
-          "tags": ["iOS", "hardware", "landing page"],
-          "created": 1559224829278
+          "tags" : [ "iOS", "hardware", "landing page" ],
+          "title" : "Apple Pay Integration"
         },
-        "-Lg81hZLEdf-x4XIMXad": {
-          "id": "-Lg81hZLEdf-x4XIMXad",
-          "title": "Wordpress Webdesign",
-          "description": "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea!",
-          "excerpt": "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed.",
-          "link": {
-            "title": "See my LinkedIn Profile",
-            "url": "https://linkedin.com/in/nicograef"
+        "-Lg81hZLEdf-x4XIMXad" : {
+          "created" : 1559224834726,
+          "description" : "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea!",
+          "excerpt" : "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed.",
+          "id" : "-Lg81hZLEdf-x4XIMXad",
+          "image" : "https://portfolio-cms-0742.web.app/img/coding.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
           },
-          "image": "https://portfolio-cms-0742.web.app/img/coding.jpg",
-          "tags": ["webdesign", "wordpress", "cms"],
-          "created": 1559224834726
+          "tags" : [ "webdesign", "wordpress", "cms" ],
+          "title" : "Wordpress Webdesign"
+        },
+        "-LgXx3KAuZtE2KGMjAWH" : {
+          "created" : 1559659561782,
+          "description" : "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea!",
+          "excerpt" : "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed.",
+          "id" : "-LgXx3KAuZtE2KGMjAWH",
+          "image" : "https://portfolio-cms-0742.web.app/img/coding.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
+          },
+          "tags" : [ "webdesign", "wordpress", "cms" ],
+          "title" : "Wordpress Webdesign"
+        },
+        "-LgXx5u27ehSfO_0FYyQ" : {
+          "created" : 1559659572334,
+          "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias!",
+          "excerpt" : "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "id" : "-LgXx5u27ehSfO_0FYyQ",
+          "image" : "https://portfolio-cms-0742.web.app/img/mobile.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
+          },
+          "tags" : [ "mobile", "ux design", "react native" ],
+          "title" : "Mobile App Development"
+        },
+        "-LgXx75Y4mUZjOZsqxVC" : {
+          "created" : 1559659577230,
+          "description" : "Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "excerpt" : "Expedita veritatis molestiae eveniet omnis ea.",
+          "id" : "-LgXx75Y4mUZjOZsqxVC",
+          "image" : "https://portfolio-cms-0742.web.app/img/pay.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
+          },
+          "tags" : [ "iOS", "hardware", "landing page" ],
+          "title" : "Apple Pay Integration"
+        },
+        "-LgXxZmxNPEvb-GhUOqP" : {
+          "created" : 1559659694758,
+          "description" : "Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "excerpt" : "Expedita veritatis molestiae eveniet omnis ea.",
+          "id" : "-LgXxZmxNPEvb-GhUOqP",
+          "image" : "https://portfolio-cms-0742.web.app/img/pay.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
+          },
+          "tags" : [ "iOS", "hardware", "landing page" ],
+          "title" : "Apple Pay Integration"
+        },
+        "-LgXxbuJyXBfv72YtQbH" : {
+          "created" : 1559659707519,
+          "description" : "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea!",
+          "excerpt" : "Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed.",
+          "id" : "-LgXxbuJyXBfv72YtQbH",
+          "image" : "https://portfolio-cms-0742.web.app/img/coding.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
+          },
+          "tags" : [ "webdesign", "wordpress", "cms" ],
+          "title" : "Wordpress Webdesign"
+        },
+        "-LgXxcUnVWY7cVxEY08a" : {
+          "created" : 1559659709918,
+          "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita veritatis molestiae eveniet omnis ea! Quod eligendi libero repudiandae quisquam, recusandae non dicta velit sed, cumque iusto accusantium, ab sequi alias!",
+          "excerpt" : "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "id" : "-LgXxcUnVWY7cVxEY08a",
+          "image" : "https://portfolio-cms-0742.web.app/img/mobile.jpg",
+          "link" : {
+            "title" : "See my LinkedIn Profile",
+            "url" : "https://linkedin.com/in/nicograef"
+          },
+          "tags" : [ "mobile", "ux design", "react native" ],
+          "title" : "Mobile App Development"
         }
       }
     }

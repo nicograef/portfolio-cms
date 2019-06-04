@@ -56,9 +56,9 @@ class UI {
     setTimeout(() => (alert.className = `alert d-none`), 5000)
   }
 
-  static addPortfolioItem(item) {
+  static addPortfolioItem(item, database) {
     const date = new Date(item.created).toString().split(' ')[1] + ' ' + new Date(item.created).toString().split(' ')[3]
-    const tags = item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ')
+    const tags = item.tags ? item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ') : ''
 
     const div = document.createElement('div')
     div.className = 'card m-0 portfolio-item'
@@ -67,8 +67,8 @@ class UI {
       <img src="${item.image}" class="card-img-top" alt="${item.title}" />
       <div class="card-body">
         <h5 class="card-title">${item.title}</h5>
-        <p class="card-text">${item.description.substring(0, 200) + '...'}</p>
-        ${tags}
+        <p class="card-text description">${item.description.substring(0, 200) + '...'}</p>
+        <p class="card-text tags">${tags}</p>
         </div>
       <div class="card-footer">
         <small class="text-muted">${date}</small>
@@ -118,61 +118,16 @@ class UI {
   }
 
   static updatePortfolioItem(item) {
-    const date = new Date(item.created).toString().split(' ')[1] + ' ' + new Date(item.created).toString().split(' ')[3]
-    const tags = item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ')
-
+    console.log(item.tags)
     const div = document.getElementById(item.id)
-    div.innerHTML = `
-      <img src="${item.image}" class="card-img-top" alt="${item.title}" />
-      <div class="card-body">
-        <h5 class="card-title">${item.title}</h5>
-        <p class="card-text">${item.description.substring(0, 200) + '...'}</p>
-        ${tags}
-        </div>
-      <div class="card-footer">
-        <small class="text-muted">${date}</small>
-        <span class="float-right">
-        <span class="d-none delete-question">Delete?</span>
-        <a href="#" class="card-link text-danger delete-btn">delete</a>
-        <a href="#" class="d-none card-link delete-no-btn">no</a>
-        <a href="#" class="d-none card-link text-danger delete-yes-btn">yes</a>
-        <a href="#" class="card-link edit-btn">edit</a>
-        </span>
-      </div>
-    `
-    div.querySelector('.edit-btn').addEventListener('click', e => {
-      e.preventDefault()
-      UI.loadItemToEdit(item)
-    })
-    div.querySelector('.delete-btn').addEventListener('click', e => {
-      e.preventDefault()
 
-      div.querySelector('.delete-question').classList.remove('d-none')
-      div.querySelector('.delete-no-btn').classList.remove('d-none')
-      div.querySelector('.delete-yes-btn').classList.remove('d-none')
-      div.querySelector('.delete-btn').classList.add('d-none')
-      div.querySelector('.edit-btn').classList.add('d-none')
+    div.querySelector('.card-title').textContent = item.title
+    div.querySelector('.description').textContent = item.description.substring(0, 200) + '...'
+    div.querySelector('img').src = item.image
+    div.querySelector('img').alt = item.title
 
-      setTimeout(() => div.querySelector('.delete-no-btn').click(), 5000)
-    })
-    div.querySelector('.delete-no-btn').addEventListener('click', e => {
-      e.preventDefault()
-
-      div.querySelector('.delete-question').classList.add('d-none')
-      div.querySelector('.delete-no-btn').classList.add('d-none')
-      div.querySelector('.delete-yes-btn').classList.add('d-none')
-      div.querySelector('.delete-btn').classList.remove('d-none')
-      div.querySelector('.edit-btn').classList.remove('d-none')
-    })
-    div.querySelector('.delete-yes-btn').addEventListener('click', e => {
-      e.preventDefault()
-      database
-        .deletePortfolioItem(item)
-        .then(
-          result => document.getElementById(item.id).remove(),
-          err => UI.showAlert('danger', 'Something went wrong. Try again!')
-        )
-    })
+    const tags = item.tags ? item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ') : ''
+    div.querySelector('.tags').innerHTML = tags
   }
 
   static loadItemToEdit(item) {
@@ -182,7 +137,7 @@ class UI {
     excerpt.value = item.excerpt
     image.value = item.image
     description.value = item.description
-    tags.value = item.tags.join(', ')
+    tags.value = item.tags ? item.tags.join(', ') : ''
     linkUrl.value = item.link.url
     linkTitle.value = item.link.title
 

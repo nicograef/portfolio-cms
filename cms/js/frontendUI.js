@@ -40,7 +40,7 @@ class UI {
   }
 
   static addPortfolioItem(item) {
-    const tags = item.tags.map(item => `<span class="badge badge-light">${item}</span>`).join(' ')
+    const tags = item.tags ? item.tags.map(item => `<span class="badge badge-light">${item}</span>`).join(' ') : ''
 
     const newItem = document.createElement('div')
     newItem.className = 'portfolio-item col-lg-6 col-xl-4 p-1'
@@ -68,7 +68,9 @@ class UI {
     itemPageLink.textContent = item.link.title
     itemPageLink.setAttribute('href', item.link.url)
     itemPageImage.style.backgroundImage = 'url(' + item.image + ')'
-    itemPageTags.innerHTML = item.tags.map(tag => `<span class='badge badge-dark'>${tag}</span>`).join(' ')
+    itemPageTags.innerHTML = item.tags
+      ? item.tags.map(tag => `<span class='badge badge-dark'>${tag}</span>`).join(' ')
+      : ''
 
     itemPage.style.top = '0'
   }
