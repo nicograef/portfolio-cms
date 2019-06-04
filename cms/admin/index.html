@@ -63,8 +63,18 @@
                     </div>
                     <div class="col-auto">
                       <div class="form-group">
-                        <label for="author-image" class="d-block">Image</label>
-                        <img id="author-image" src="" class="img-fluid mx-auto img-thumbnail" />
+                        <label for="author-image">
+                          Image <small class="text-muted">click to change</small><br />
+                          <img id="author-image-preview" src="" class="img-fluid mx-auto img-thumbnail" />
+                        </label>
+                        <input
+                          hidden
+                          required
+                          type="file"
+                          accept=".png, .jpeg, .jpg"
+                          id="author-image"
+                          class="d-none"
+                        />
                       </div>
                     </div>
                   </div>
@@ -96,21 +106,30 @@
                       <input disabled type="number" class="form-control" id="created" />
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="title">Title</label>
-                    <input required type="text" class="form-control" id="title" />
-                  </div>
-                  <div class="form-group">
-                    <label for="excerpt">Excerpt</label>
-                    <input type="text" class="form-control" id="excerpt" />
-                  </div>
-                  <div class="form-group">
-                    <label for="image">Image (url)</label> <small class="text-muted">optional</small>
-                    <input required type="url" class="form-control" id="image" />
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea required class="form-control" id="description" rows="4"></textarea>
+                  <div class="row">
+                    <div class="col-md">
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input required type="text" class="form-control" id="title" />
+                      </div>
+                      <div class="form-group">
+                        <label for="excerpt">Excerpt <small class="text-muted">optional</small></label>
+                        <input type="text" class="form-control" id="excerpt" />
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea required class="form-control" id="description" rows="4"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <div class="form-group">
+                        <label for="image" class="d-block"
+                          >Image <small class="text-muted">click to change</small><br />
+                        </label>
+                        <img id="image-preview" src="http://placehold.it/180" class="img-fluid mx-auto img-thumbnail" />
+                        <input required hidden type="file" accept=".png, .jpeg, .jpg" id="image" class="d-none" />
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="excerpt">Tags (separated with commas) <small class="text-muted">optional</small></label>

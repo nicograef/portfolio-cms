@@ -4,6 +4,7 @@ const authorForm = document.getElementById('author-form')
 const authorName = document.getElementById('author-name')
 const authorBio = document.getElementById('author-bio')
 const authorImage = document.getElementById('author-image')
+const authorImagePreview = document.getElementById('author-image-preview')
 const authorProfession = document.getElementById('author-profession')
 
 // Item Form Fields
@@ -17,6 +18,7 @@ const title = document.getElementById('title')
 const description = document.getElementById('description')
 const excerpt = document.getElementById('excerpt')
 const image = document.getElementById('image')
+const imagePreview = document.getElementById('image-preview')
 const tags = document.getElementById('tags')
 const linkUrl = document.getElementById('link-url')
 const linkTitle = document.getElementById('link-title')
@@ -47,7 +49,7 @@ class UI {
     authorName.value = author.name
     authorProfession.value = author.profession
     authorBio.value = author.bio
-    authorImage.src = author.image
+    authorImagePreview.src = author.image
   }
 
   static showAlert(type, message) {
@@ -135,7 +137,7 @@ class UI {
     created.value = item.created
     title.value = item.title
     excerpt.value = item.excerpt
-    image.value = item.image
+    imagePreview.src = item.image
     description.value = item.description
     tags.value = item.tags ? item.tags.join(', ') : ''
     linkUrl.value = item.link.url
@@ -152,7 +154,7 @@ class UI {
     created.value = ''
     title.value = ''
     excerpt.value = ''
-    image.value = ''
+    imagePreview.src = ''
     description.value = ''
     tags.value = ''
     linkUrl.value = ''
@@ -185,7 +187,7 @@ class UI {
 
   static markEmptyInputFields() {
     if (!title.value.length) title.classList.add('is-invalid')
-    if (!image.value.length) image.classList.add('is-invalid')
+    if (!image.src.length) image.classList.add('is-invalid')
     if (!description.value.length) description.classList.add('is-invalid')
 
     setTimeout(() => {

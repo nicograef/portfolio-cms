@@ -31,11 +31,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     UI.init()
     db.author().then(author => UI.setAuthor(author))
     db.allPortfolioItems().then(items => {
-      let counter = 0
       for (let itemId in items) {
-        if (counter > 1) continue
         UI.addPortfolioItem(items[itemId], db)
-        counter++
       }
       loader.remove()
       page.classList.remove('d-none')
@@ -72,7 +69,7 @@ authorForm.addEventListener('submit', e => {
   const author = {
     name: authorName.value,
     bio: authorBio.value,
-    image: authorImage.src,
+    image: authorImagePreview.src,
     profession: authorProfession.value
   }
 
@@ -87,10 +84,9 @@ authorForm.addEventListener('submit', e => {
 
 itemForm.addEventListener('submit', e => {
   e.preventDefault()
+  // UI.markEmptyInputFields()
 
-  UI.markEmptyInputFields()
-
-  if (title.value === '' || image.value === '' || description.value === '') {
+  if (title.value === '' || imagePreview.src === '' || description.value === '') {
     UI.showAlert('warning', 'Please check the red fields.')
     return
   }
@@ -98,7 +94,7 @@ itemForm.addEventListener('submit', e => {
   const item = {
     title: title.value,
     excerpt: excerpt.value,
-    image: image.value,
+    image: imagePreview.src,
     description: description.value,
     tags: tags.value.replace(/\s*,\s*/g, ',').length ? tags.value.replace(/\s*,\s*/g, ',').split(',') : null,
     link: {
@@ -108,7 +104,7 @@ itemForm.addEventListener('submit', e => {
   }
 
   // DEBUGGING
-  id.value = ''
+  // id.value = ''
 
   if (id.value === '') {
     item.created = Date.now()
@@ -132,4 +128,19 @@ itemForm.addEventListener('submit', e => {
       err => UI.showAlert('danger', 'Something went wrong. Try again!')
     )
   }
+})
+
+authorImage.addEventListener('change', e => {
+  const file = authorImage.files[0]
+  authorImagePreview.file = file
+
+  const reader = new FileReader()
+  reader.onload = (img => {
+    return e => {
+      img.src = e.target.result
+      console.log(e.target.result)
+      // db.addOrUpdateImage(e.target.result)
+    }
+  })(authorImagePreview)
+  reader.readAsDataURL(file)
 })

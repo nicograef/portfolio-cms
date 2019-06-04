@@ -82,4 +82,18 @@ class Database {
       .then(snapshot => snapshot.val())
     // .then(data => console.log(data))
   }
+
+  // add or update image
+  addOrUpdateImage(dataUrl) {
+    return firebase
+      .storage()
+      .ref('author.jpg')
+      .putString(dataUrl, 'data_url')
+      .then(snapshot => {
+        console.log(snapshot)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 }

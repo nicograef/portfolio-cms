@@ -1,7 +1,14 @@
 /* INTRO START */
 #author-image {
-  /* border-radius: 50%; */
-  max-width: 350px;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  #author-image {
+    width: 350px;
+    height: 350px;
+  }
 }
 /* INTRO END */
 
