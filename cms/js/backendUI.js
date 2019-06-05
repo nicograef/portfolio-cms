@@ -181,18 +181,19 @@ class UI {
   }
 
   static closeForms() {
+    UI.resetItemForm()
     itemFormWrapper.classList.add('d-none')
     authorFormWrapper.classList.add('d-none')
   }
 
   static markEmptyInputFields() {
     if (!title.value.length) title.classList.add('is-invalid')
-    if (!image.src.length) image.classList.add('is-invalid')
+    // if (!image.src.length) image.classList.add('is-invalid')
     if (!description.value.length) description.classList.add('is-invalid')
 
     setTimeout(() => {
       title.classList.remove('is-invalid')
-      image.classList.remove('is-invalid')
+      // image.classList.remove('is-invalid')
       description.classList.remove('is-invalid')
     }, 5000)
   }
