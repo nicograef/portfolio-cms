@@ -73,7 +73,7 @@ authorForm.addEventListener('submit', e => {
 
   if (authorName.value === '') {
     authorName.classList.add('is-invalid')
-    setTimeout(() => title.classList.remove('is-invalid'), 5000)
+    setTimeout(() => authorName.classList.remove('is-invalid'), 5000)
     UI.showAlert('warning', 'Please insert a name.')
     return
   }
