@@ -30,17 +30,6 @@ async function loadAuthor() {
 }
 
 const db = new Database(portfolioID)
-const storage = firebase.storage()
-
-storage
-  .ref('author.jpg')
-  .getDownloadURL()
-  .then(url => {
-    console.log(url)
-  })
-  .catch(error => {
-    console.log(error)
-  })
 
 UI.init()
 loadPortfolio()

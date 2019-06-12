@@ -39,10 +39,10 @@
     <div id="main" class="d-none">
       <div class="container-fluid">
         <div class="row">
-          <div id="author-form-wrapper" class="col mx-auto d-none">
+          <div id="author-form-wrapper" class="col-lg-10 col-xl-8 mx-auto d-none mb-5">
             <div class="card">
               <div class="card-header">
-                Author
+                Portfolio Author
               </div>
               <div class="card-body">
                 <form id="author-form">
@@ -65,22 +65,19 @@
                       <div class="form-group">
                         <label for="author-image">
                           Image <small class="text-muted">click to change</small><br />
-                          <img id="author-image-preview" src="" class="img-fluid mx-auto img-thumbnail" />
+                          <img
+                            id="author-image-preview"
+                            src="https://via.placeholder.com/200.jpg?text=no+image"
+                            class="img-fluid mx-auto img-thumbnail"
+                          />
                         </label>
-                        <input
-                          hidden
-                          required
-                          type="file"
-                          accept=".png, .jpeg, .jpg"
-                          id="author-image"
-                          class="d-none"
-                        />
+                        <input hidden type="file" accept=".png, .jpeg, .jpg, .gif" id="author-image" class="d-none" />
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col">
-                      <button type="submit" id="author-submit" class="btn btn-light w-100">
+                      <button type="submit" id="author-submit" class="btn btn-dark btn-block">
                         Save
                       </button>
                     </div>
@@ -89,7 +86,7 @@
               </div>
             </div>
           </div>
-          <div id="item-form-wrapper" class="col-xl-6 mx-auto d-none">
+          <div id="item-form-wrapper" class="col-lg-10 col-xl-8 mx-auto d-none mb-5">
             <div class="card">
               <div class="card-header">
                 <span id="item-form-title">Create New Portfolio Item</span>
@@ -123,11 +120,22 @@
                     </div>
                     <div class="col-auto">
                       <div class="form-group">
-                        <label for="image" class="d-block"
-                          >Image <small class="text-muted">click to change</small><br />
+                        <label for="image">
+                          Image <small class="text-muted">click to change</small><br />
+                          <img
+                            id="image-preview"
+                            src="https://via.placeholder.com/200.jpg?text=no+image"
+                            class="img-fluid mx-auto img-thumbnail"
+                          />
                         </label>
-                        <img id="image-preview" src="http://placehold.it/180" class="img-fluid mx-auto img-thumbnail" />
-                        <input hidden type="file" accept=".png, .jpeg, .jpg" id="image" class="d-none" name="image" />
+                        <input
+                          hidden
+                          type="file"
+                          accept=".png, .jpeg, .jpg, .gif"
+                          id="image"
+                          class="d-none"
+                          name="image"
+                        />
                       </div>
                     </div>
                   </div>
@@ -149,7 +157,7 @@
                       </div>
                     </div>
                   </div>
-                  <button type="submit" id="item-form-submit" class="btn btn-light w-100">
+                  <button type="submit" id="item-form-submit" class="btn btn-dark btn-block">
                     Add to Portfolio
                   </button>
                 </form>
@@ -176,7 +184,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-storage.js"></script>
 
-    <script src="../js/Database.js"></script>
+    <script src="../js/database.js"></script>
     <script src="../js/backendUI.js"></script>
     <script src="../js/backend.js"></script>
   </body>

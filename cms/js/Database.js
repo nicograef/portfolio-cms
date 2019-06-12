@@ -1,8 +1,8 @@
 class Database {
   constructor(portfolioID) {
-    this.baseRef = `users/${portfolioID}`
-    this.authorRef = `users/${portfolioID}/author`
-    this.itemsRef = `users/${portfolioID}/items`
+    this.baseRef = `user/${portfolioID}`
+    this.authorRef = `user/${portfolioID}/author`
+    this.itemsRef = `user/${portfolioID}/items`
   }
 
   // Get author information from database and show it on the page
@@ -14,7 +14,6 @@ class Database {
       .ref(this.authorRef)
       .once('value')
       .then(snapshot => snapshot.val())
-    // .then(data => console.log(data))
   }
 
   setAuthor(author) {
@@ -26,15 +25,8 @@ class Database {
       .set(author)
   }
 
-  addPortfolioItem(item) {
-    console.log('adding item: ', item)
-
-    // Get a key for a new portfolio item
-    item.id = firebase
-      .database()
-      .ref()
-      .child(this.itemsRef)
-      .push().key
+  addOrUpdatePortfolioItem(item) {
+    console.log('adding or updating item: ', item)
 
     return firebase
       .database()
@@ -42,13 +34,16 @@ class Database {
       .set(item)
   }
 
-  updatePortfolioItem(item) {
-    console.log('updating item: ', item)
-
-    return firebase
+  // Get a key for a new portfolio item
+  getNewItemID() {
+    const id = firebase
       .database()
-      .ref(`${this.itemsRef}/${item.id}`)
-      .set(item)
+      .ref()
+      .child(this.itemsRef)
+      .push().key
+
+    console.log('created new item id: ' + id)
+    return id
   }
 
   deletePortfolioItem(item) {
@@ -69,31 +64,27 @@ class Database {
       .ref(this.itemsRef)
       .once('value')
       .then(snapshot => snapshot.val())
-    // .then(data => console.log(data))
   }
 
   // Get single portfolio item
-  portfolioItem(itemId) {
+  getPortfolioItem(itemId) {
     console.log('getting portfolio item', itemId)
+
     return firebase
       .database()
       .ref(`${this.itemsRef}/${itemId}`)
       .once('value')
       .then(snapshot => snapshot.val())
-    // .then(data => console.log(data))
   }
 
   // add or update image
-  addOrUpdateImage(dataUrl) {
+  addOrUpdateImage(filename, dataUrl) {
+    console.log('uploading image: ', filename)
+
     return firebase
       .storage()
-      .ref('author.jpg')
+      .ref(`${this.baseRef}/${filename}`)
       .putString(dataUrl, 'data_url')
-      .then(snapshot => {
-        console.log(snapshot)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      .then(snapshot => snapshot.ref.getDownloadURL())
   }
 }

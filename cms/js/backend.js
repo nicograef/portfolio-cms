@@ -29,13 +29,25 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in
     loginForm.remove()
     UI.init()
-    db.author().then(author => UI.setAuthor(author))
-    db.allPortfolioItems().then(items => {
-      for (let itemId in items) {
-        UI.addPortfolioItem(items[itemId], db)
+
+    db.author().then(author => {
+      UI.setAuthor(author)
+
+      // check if first start, i.e. portfolio has not been setup/initialized yet
+      if (author.name === '') {
+        UI.showAuthorForm()
+        UI.showAlert('warning', 'Please insert author information.')
       }
+
       loader.remove()
       page.classList.remove('d-none')
+    })
+
+    db.allPortfolioItems().then(items => {
+      for (let itemId in items) {
+        const newUIElement = UI.addPortfolioItem(items[itemId])
+        initEventListenersForPortfolioItem(items[itemId], newUIElement)
+      }
     })
   } else {
     // User is signed out.
@@ -69,22 +81,47 @@ authorForm.addEventListener('submit', e => {
   const author = {
     name: authorName.value,
     bio: authorBio.value,
-    image: authorImagePreview.src,
     profession: authorProfession.value
   }
 
-  db.setAuthor(author).then(
-    result => {
-      UI.closeForms()
-      UI.showAlert('success', 'Information saved!')
-    },
-    err => UI.showAlert('danger', 'Something went wrong. Try again!')
-  )
+  if (authorImage.files[0] !== undefined) {
+    // take image file from file input, upload to firebase storage an set the download link as new image source
+    const fileType = authorImage.files[0].type.split('/')[1]
+    const fileName = 'author.' + fileType
+
+    if (!['jpg', 'jpeg', 'png', 'gif'].includes(fileType)) {
+      UI.showAlert('warning', 'Wrong image type. Please use png, jpg, jpeg or gif.')
+      return
+    }
+
+    db.addOrUpdateImage(fileName, authorImagePreview.src)
+      .then(downloadURL => {
+        author.image = downloadURL
+        updateAuthor(author)
+      })
+      .catch(err => UI.showAlert('danger', 'Something went wrong. Try again!'))
+
+    // reset input value
+    authorImage.value = ''
+    if (!/safari/i.test(navigator.userAgent)) {
+      authorImage.type = ''
+      authorImage.type = 'file'
+    }
+  } else {
+    // test if current image source is correct
+    const testImage = new Image()
+    testImage.onerror = () => UI.showAlert('warning', 'Please upload an image.')
+    testImage.onload = () => {
+      author.image = authorImagePreview.src
+      updateAuthor(author)
+    }
+    testImage.src = authorImagePreview.src
+  }
 })
 
 itemForm.addEventListener('submit', e => {
   e.preventDefault()
-  // UI.markEmptyInputFields()
+  UI.markEmptyInputFields()
 
   if (title.value === '' || imagePreview.src === '' || description.value === '') {
     UI.showAlert('warning', 'Please check the red fields.')
@@ -94,7 +131,6 @@ itemForm.addEventListener('submit', e => {
   const item = {
     title: title.value,
     excerpt: excerpt.value,
-    image: imagePreview.src,
     description: description.value,
     tags: tags.value.replace(/\s*,\s*/g, ',').length ? tags.value.replace(/\s*,\s*/g, ',').split(',') : null,
     link: {
@@ -105,42 +141,111 @@ itemForm.addEventListener('submit', e => {
 
   // DEBUGGING
   // id.value = ''
-
+  let updated = false
   if (id.value === '') {
+    item.id = db.getNewItemID()
     item.created = Date.now()
-    db.addPortfolioItem(item).then(
-      result => {
-        UI.closeForms()
-        UI.addPortfolioItem(item, db)
-        UI.showAlert('success', 'Item added to your portfolio!')
-      },
-      err => UI.showAlert('danger', 'Something went wrong. Try again!')
-    )
   } else {
+    updated = true
     item.id = id.value
     item.created = Number(created.value)
-    db.updatePortfolioItem(item, db).then(
-      result => {
-        UI.closeForms()
-        UI.updatePortfolioItem(item)
-        UI.showAlert('success', 'Item was updated!')
-      },
-      err => UI.showAlert('danger', 'Something went wrong. Try again!')
-    )
+  }
+
+  if (image.files[0] !== undefined) {
+    // take image file from file input, upload to firebase storage an set the download link as new image source
+    const fileType = image.files[0].type.split('/')[1]
+    const fileName = item.id + fileType
+
+    if (!['jpg', 'jpeg', 'png', 'gif'].includes(fileType)) {
+      UI.showAlert('warning', 'Wrong image type. Please use png, jpg, jpeg or gif.')
+      return
+    }
+
+    db.addOrUpdateImage(fileName, imagePreview.src)
+      .then(downloadURL => {
+        item.image = downloadURL
+        addOrUpdateItem(item, updated)
+      })
+      .catch(err => UI.showAlert('danger', 'Something went wrong. Try again!'))
+  } else {
+    // test if current image source is correct
+    const testImage = new Image()
+    testImage.onerror = () => UI.showAlert('warning', 'Please upload an image.')
+    testImage.onload = () => {
+      item.image = imagePreview.src
+      addOrUpdateItem(item, updated)
+    }
+    testImage.src = imagePreview.src
   }
 })
 
 authorImage.addEventListener('change', e => {
   const file = authorImage.files[0]
-  authorImagePreview.file = file
-
   const reader = new FileReader()
-  reader.onload = (img => {
-    return e => {
-      img.src = e.target.result
-      console.log(e.target.result)
-      // db.addOrUpdateImage(e.target.result)
-    }
-  })(authorImagePreview)
+  reader.onload = e => (authorImagePreview.src = reader.result)
   reader.readAsDataURL(file)
 })
+
+image.addEventListener('change', e => {
+  const file = image.files[0]
+  const reader = new FileReader()
+  reader.onload = e => (imagePreview.src = reader.result)
+  reader.readAsDataURL(file)
+})
+
+function updateAuthor(author) {
+  db.setAuthor(author).then(
+    result => {
+      UI.closeForms()
+      UI.setAuthor(author)
+      UI.showAlert('success', 'Information saved!')
+    },
+    err => UI.showAlert('danger', 'Something went wrong. Try again!')
+  )
+}
+
+function addOrUpdateItem(item, updated) {
+  db.addOrUpdatePortfolioItem(item)
+    .then(() => {
+      UI.closeForms()
+      if (updated) UI.updatePortfolioItem(item)
+      else UI.addPortfolioItem(item)
+      UI.showAlert('success', updated ? 'Item was updated!' : 'Item added to your portfolio!')
+    })
+    .catch(err => UI.showAlert('danger', 'Something went wrong. Try again!'))
+}
+
+function initEventListenersForPortfolioItem(item, uiElement) {
+  uiElement.querySelector('.edit-btn').addEventListener('click', e => {
+    e.preventDefault()
+    db.getPortfolioItem(item.id)
+      .then(item => UI.loadItemToEdit(item))
+      .catch(err => UI.showAlert('danger', 'Something went wrong. Try again!'))
+  })
+  uiElement.querySelector('.delete-btn').addEventListener('click', e => {
+    e.preventDefault()
+
+    uiElement.querySelector('.delete-question').classList.remove('d-none')
+    uiElement.querySelector('.delete-no-btn').classList.remove('d-none')
+    uiElement.querySelector('.delete-yes-btn').classList.remove('d-none')
+    uiElement.querySelector('.delete-btn').classList.add('d-none')
+    uiElement.querySelector('.edit-btn').classList.add('d-none')
+
+    setTimeout(() => uiElement.querySelector('.delete-no-btn').click(), 5000)
+  })
+  uiElement.querySelector('.delete-no-btn').addEventListener('click', e => {
+    e.preventDefault()
+
+    uiElement.querySelector('.delete-question').classList.add('d-none')
+    uiElement.querySelector('.delete-no-btn').classList.add('d-none')
+    uiElement.querySelector('.delete-yes-btn').classList.add('d-none')
+    uiElement.querySelector('.delete-btn').classList.remove('d-none')
+    uiElement.querySelector('.edit-btn').classList.remove('d-none')
+  })
+  uiElement.querySelector('.delete-yes-btn').addEventListener('click', e => {
+    e.preventDefault()
+    db.deletePortfolioItem(item)
+      .then(() => uiElement.remove())
+      .catch(err => UI.showAlert('danger', 'Something went wrong. Try again!'))
+  })
+}

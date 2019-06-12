@@ -58,7 +58,7 @@ class UI {
     setTimeout(() => (alert.className = `alert d-none`), 5000)
   }
 
-  static addPortfolioItem(item, database) {
+  static addPortfolioItem(item) {
     const date = new Date(item.created).toString().split(' ')[1] + ' ' + new Date(item.created).toString().split(' ')[3]
     const tags = item.tags ? item.tags.map(item => `<span class="badge badge-dark">${item}</span>`).join(' ') : ''
 
@@ -84,43 +84,10 @@ class UI {
       </div>
     `
     portfolio.appendChild(div)
-    div.querySelector('.edit-btn').addEventListener('click', e => {
-      e.preventDefault()
-      UI.loadItemToEdit(item)
-    })
-    div.querySelector('.delete-btn').addEventListener('click', e => {
-      e.preventDefault()
-
-      div.querySelector('.delete-question').classList.remove('d-none')
-      div.querySelector('.delete-no-btn').classList.remove('d-none')
-      div.querySelector('.delete-yes-btn').classList.remove('d-none')
-      div.querySelector('.delete-btn').classList.add('d-none')
-      div.querySelector('.edit-btn').classList.add('d-none')
-
-      setTimeout(() => div.querySelector('.delete-no-btn').click(), 5000)
-    })
-    div.querySelector('.delete-no-btn').addEventListener('click', e => {
-      e.preventDefault()
-
-      div.querySelector('.delete-question').classList.add('d-none')
-      div.querySelector('.delete-no-btn').classList.add('d-none')
-      div.querySelector('.delete-yes-btn').classList.add('d-none')
-      div.querySelector('.delete-btn').classList.remove('d-none')
-      div.querySelector('.edit-btn').classList.remove('d-none')
-    })
-    div.querySelector('.delete-yes-btn').addEventListener('click', e => {
-      e.preventDefault()
-      database
-        .deletePortfolioItem(item)
-        .then(
-          result => document.getElementById(item.id).remove(),
-          err => UI.showAlert('danger', 'Something went wrong. Try again!')
-        )
-    })
+    return div
   }
 
   static updatePortfolioItem(item) {
-    console.log(item.tags)
     const div = document.getElementById(item.id)
 
     div.querySelector('.card-title').textContent = item.title
@@ -144,7 +111,7 @@ class UI {
     linkTitle.value = item.link.title
 
     itemFormTitle.textContent = 'Edit Portfolio Item'
-    itemFormSubmit.textContent = 'Save Changes'
+    itemFormSubmit.textContent = 'Update Item'
 
     UI.showItemForm()
   }
@@ -170,14 +137,16 @@ class UI {
     itemFormWrapper.classList.remove('d-none')
     authorFormWrapper.classList.add('d-none')
     itemFormWrapper.focus()
-    itemFormWrapper.scrollIntoView()
+    // itemFormWrapper.scrollIntoView()
+    window.scrollTo(0, 0)
   }
 
   static showAuthorForm() {
     itemFormWrapper.classList.add('d-none')
     authorFormWrapper.classList.remove('d-none')
     authorFormWrapper.focus()
-    authorFormWrapper.scrollIntoView()
+    // authorFormWrapper.scrollIntoView()
+    window.scrollTo(0, 0)
   }
 
   static closeForms() {
@@ -186,14 +155,16 @@ class UI {
     authorFormWrapper.classList.add('d-none')
   }
 
+  static resetPortfolio() {
+    portfolio.innerHTML = ''
+  }
+
   static markEmptyInputFields() {
     if (!title.value.length) title.classList.add('is-invalid')
-    // if (!image.src.length) image.classList.add('is-invalid')
     if (!description.value.length) description.classList.add('is-invalid')
 
     setTimeout(() => {
       title.classList.remove('is-invalid')
-      // image.classList.remove('is-invalid')
       description.classList.remove('is-invalid')
     }, 5000)
   }
