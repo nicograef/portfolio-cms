@@ -107,6 +107,11 @@ authorForm.addEventListener('submit', e => {
       authorImage.type = ''
       authorImage.type = 'file'
     }
+  }
+  // if placeholder is still set as source: stop and show alert
+  else if (/placeholder/.test(authorImagePreview.src)) {
+    UI.showAlert('warning', 'Please upload an image.')
+    return
   } else {
     // test if current image source is correct
     const testImage = new Image()
@@ -167,6 +172,11 @@ itemForm.addEventListener('submit', e => {
         addOrUpdateItem(item, updated)
       })
       .catch(err => UI.showAlert('danger', 'Something went wrong. Try again!'))
+  }
+  // if placeholder is still set as source: stop and show alert
+  else if (/placeholder/.test(imagePreview.src)) {
+    UI.showAlert('warning', 'Please upload an image.')
+    return
   } else {
     // test if current image source is correct
     const testImage = new Image()

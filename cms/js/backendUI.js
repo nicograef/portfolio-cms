@@ -37,11 +37,13 @@ class UI {
   static init() {
     btnNewItem.addEventListener('click', e => {
       e.preventDefault()
+      UI.closeForms()
       UI.showItemForm()
     })
 
     btnEditAuthor.addEventListener('click', e => {
       e.preventDefault()
+      UI.closeForms()
       UI.showAuthorForm()
     })
   }
@@ -121,11 +123,18 @@ class UI {
     created.value = ''
     title.value = ''
     excerpt.value = ''
-    imagePreview.src = ''
     description.value = ''
     tags.value = ''
     linkUrl.value = ''
     linkTitle.value = ''
+    imagePreview.src = 'https://via.placeholder.com/200.jpg?text=no+image'
+
+    // reset image input
+    image.value = ''
+    if (!/safari/i.test(navigator.userAgent)) {
+      image.type = ''
+      image.type = 'file'
+    }
 
     itemFormTitle.textContent = 'Create New Portfolio Item'
     itemFormSubmit.textContent = 'Add to Portfolio'
@@ -135,14 +144,12 @@ class UI {
 
   static showItemForm() {
     itemFormWrapper.classList.remove('d-none')
-    authorFormWrapper.classList.add('d-none')
     itemFormWrapper.focus()
     // itemFormWrapper.scrollIntoView()
     window.scrollTo(0, 0)
   }
 
   static showAuthorForm() {
-    itemFormWrapper.classList.add('d-none')
     authorFormWrapper.classList.remove('d-none')
     authorFormWrapper.focus()
     // authorFormWrapper.scrollIntoView()
