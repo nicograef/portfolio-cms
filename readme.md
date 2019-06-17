@@ -12,7 +12,7 @@ A dead simple cms for web portfolios. Made with only vanilla javascript, Bootstr
 **name** _String_
 Name of the portfolio author.
 
-**bio** _String_
+**bio** _String_ _(optional)_
 Short biography of the author.
 
 **image** _url to jpg/png-file_
@@ -35,8 +35,8 @@ Title of the portfolio item.
 **description** _String_
 Description of the portfolio item.
 
-**excerpt** _String_
-Excerpt of the description. Used to display the item in the portfolio.
+**excerpt** _String_ _(optional)_
+Excerpt of the description. Used to display the item in the portfolio. If omitted, the first X characters of the description will be displayed instead.
 
 **link** _Object_ _(optional)_
 
@@ -48,5 +48,5 @@ Excerpt of the description. Used to display the item in the portfolio.
 **image** _url to jpg/png-file_
 Feature image of the portfolio item.
 
-**tags** _Array of Strings_
+**tags** _Array of Strings_ _(optional)_
 Tags of the portfolio item.
